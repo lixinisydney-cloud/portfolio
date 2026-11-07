@@ -1,39 +1,15 @@
 [
   {
-    "slug": "good-boy",
-    "title": "GOOD BOY",
-    "category": "Interactive Installation",
-    "year": null,
-    "summary": "An interactive dog-leash installation in which visitors follow corrective instructions and become subject to the system they believe they are controlling.",
-    "technologies": [
-      "p5.js",
-      "Raspberry Pi Pico",
-      "Web Serial",
-      "Load cell / HX711",
-      "MediaPipe",
-      "Blender"
-    ],
-    "sceneObject": "scene/good-boy.png",
-    "cover": "projects/good-boy/cover.webp",
-    "previewVideo": null,
-    "gallery": [
-      "projects/good-boy/exhibition-photo.webp",
-      "projects/good-boy/dog-park-interface.webp",
-      "projects/good-boy/dog-character.webp"
-    ],
-    "externalLinks": [],
-    "assetNote": "The exhibition photograph is currently low resolution. Higher-resolution documentation will replace it when available."
-  },
-  {
     "slug": "the-making-of-pets",
     "title": "The Making of Pets",
     "category": "3D Animation / Speculative Design",
     "year": null,
-    "summary": "A fictional animal production system exploring how animal identities are designed, packaged and consumed.",
+    "summary": "一座被精心制造的动物乐园：当美丽成为规训的一部分。",
     "technologies": [
       "Cinema 4D",
       "3D Modeling",
-      "Animation",
+      "Keyframe Animation",
+      "Lighting & Rendering",
       "Visual Storytelling"
     ],
     "sceneObject": "scene/making-of-pets.png",
@@ -52,18 +28,365 @@
         "label": "Full video",
         "url": "https://youtu.be/6AQrL53uet8"
       }
-    ]
+    ],
+    "titleCn": "制作宠物",
+    "detailZh": "以生态女性主义为研究线索，我通过一座虚构的动物乐园，讨论女性与自然如何在消费文化和权力结构中被塑造成可观看、可装饰的对象。作品将动物、植物、水、蕾丝与珍珠组合成梦幻的 3D 场景，让看似自由的“天堂”同时呈现人工控制与美化的矛盾。项目从角色与场景设计出发，完成建模、材质、灯光、关键帧动画、镜头与渲染，并通过影像组织完整的视觉叙事。",
+    "priority": 1,
+    "collection": "main",
+    "group": "Motion & 3D",
+    "isTeam": false,
+    "responsibility": "概念研究、角色与场景视觉设计、3D 建模、动画、灯光材质及渲染。",
+    "responsibilityReviewNote": null,
+    "links": [],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "完整动画",
+        "url": "https://www.youtube.com/watch?v=6AQrL53uet8",
+        "videoId": "6AQrL53uet8",
+        "poster": "posters/pets-film.webp",
+        "posterType": "project-image",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "anger-market",
+    "title": "Anger Market",
+    "category": "Visual Identity / Speculative Design",
+    "year": null,
+    "summary": "把愤怒变成商品：一个关于平台算法与情绪消费的虚构品牌。",
+    "technologies": [
+      "Brand Identity",
+      "Graphic Design",
+      "Data Storytelling",
+      "Speculative Design"
+    ],
+    "sceneObject": "scene/anger-market.png",
+    "cover": "projects/anger-market/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/anger-market/graphic-system.webp",
+      "projects/anger-market/brand-guideline-01.webp",
+      "projects/anger-market/brand-guideline-02.webp",
+      "projects/anger-market/brand-guideline-03.webp",
+      "projects/anger-market/printed-material.webp"
+    ],
+    "externalLinks": [],
+    "titleCn": "愤怒市场",
+    "detailZh": "Anger Market 以一家虚构的情绪数据公司为设定，将社交平台上的愤怒视为可以采集、分类、计量和交易的资源。我围绕“Anger Converter”构建品牌概念、图形语言与数据叙事，模拟情绪如何被转化为广告投放、舆论操作和平台留存的工具。项目通过具有讽刺意味的视觉系统，讨论个体表达、算法传播与商业利益之间的关系。",
+    "priority": 2,
+    "collection": "main",
+    "group": "Visual Design",
+    "isTeam": false,
+    "responsibility": "概念研究、品牌设定、视觉识别、图形系统与数据叙事设计。",
+    "responsibilityReviewNote": null,
+    "links": [],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "项目影片 01",
+        "url": "https://www.youtube.com/watch?v=FRyUeWUroQE",
+        "videoId": "FRyUeWUroQE",
+        "poster": "posters/anger-film-01.webp",
+        "posterType": "project-image",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      },
+      {
+        "kind": "youtube",
+        "label": "项目影片 02",
+        "url": "https://www.youtube.com/watch?v=QLGBUlh2MRM",
+        "videoId": "QLGBUlh2MRM",
+        "poster": "posters/anger-film-02.webp",
+        "posterType": "project-image",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "chroma-residences",
+    "title": "Chroma Residences: Living in Color",
+    "category": "Spatial / Installation Design",
+    "year": null,
+    "summary": "从建筑空间比例出发，重新看待城市租住生活的“理想包装”。",
+    "technologies": [
+      "Spatial Design",
+      "Cinema 4D",
+      "Arduino",
+      "Physical Model",
+      "Installation"
+    ],
+    "sceneObject": "scene/chroma-residences.png",
+    "cover": "projects/chroma-residences/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/chroma-residences/module-tower.webp",
+      "projects/chroma-residences/module-assembly.webp",
+      "projects/chroma-residences/installation-detail.webp",
+      "projects/chroma-residences/building-detail.webp"
+    ],
+    "externalLinks": [
+      {
+        "label": "Project video",
+        "url": "https://youtu.be/xEc4Kw6O3hY"
+      }
+    ],
+    "titleCn": "色度住宅",
+    "detailZh": "项目以北京城市租住经验为切入点，观察共享空间被大量宣传、私人生活面积却不断压缩的现象。我设计了一组以不同阶层为隐喻的模块化住宅结构，利用空间比例、分层与材料表达居住体验的差异，并以装置呈现租赁市场中的公共与私人空间关系。作品将社会议题研究转译为可观察、可讨论的空间视觉系统。",
+    "priority": 3,
+    "collection": "main",
+    "group": "Spatial",
+    "isTeam": false,
+    "responsibility": "城市议题研究、空间叙事、模块设计、3D 辅助建模与装置呈现。",
+    "responsibilityReviewNote": null,
+    "links": [],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "项目纪录",
+        "url": "https://www.youtube.com/watch?v=xEc4Kw6O3hY",
+        "videoId": "xEc4Kw6O3hY",
+        "poster": "posters/chroma-film.webp",
+        "posterType": "project-image",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "stubborn-horse",
+    "cover": null,
+    "sceneObject": null,
+    "gallery": [],
+    "previewVideo": null,
+    "title": "Stubborn Horse",
+    "titleCn": "固执的马",
+    "category": "Creative Coding / Interactive Web",
+    "summary": "一场无法通过“强行控制”获胜的互动喂食实验。",
+    "detailZh": "Stubborn Horse 是一个基于 p5.js 的浏览器互动体验。玩家通过移动鼠标和投放草料引导马接近目标区域，但角色并不会机械地服从指令：过度催促反而会影响它的情绪。项目围绕状态反馈、平滑移动和简单规则建立可理解的互动循环，让玩家在等待、观察与尝试中学习“引导而非控制”。",
+    "technologies": [
+      "p5.js",
+      "JavaScript",
+      "State-based Interaction",
+      "Creative Coding"
+    ],
+    "priority": 4,
+    "collection": "main",
+    "group": "Interactive Web",
+    "isTeam": false,
+    "responsibility": "角色与交互机制设计、p5.js 开发、状态与反馈逻辑、声音和视觉反馈。",
+    "responsibilityReviewNote": null,
+    "links": [
+      {
+        "kind": "live",
+        "label": "在线体验",
+        "url": "https://stubborn-horse.onrender.com"
+      },
+      {
+        "kind": "github",
+        "label": "查看代码",
+        "url": "https://github.com/lixinisydney-cloud/Stubborn-Horse"
+      }
+    ],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "玩法演示",
+        "url": "https://www.youtube.com/watch?v=itmUY-1dSg8",
+        "videoId": "itmUY-1dSg8",
+        "poster": "posters/stubborn-horse-film.svg",
+        "posterType": "text",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "year": null,
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": null,
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "horse-motion-study",
+    "title": "From Static Image to Motion: Algorithmic Reinterpretations of a Horse",
+    "category": "Generative Art / Motion Study",
+    "year": null,
+    "summary": "让手绘轮廓通过计算机视觉与算法重新获得运动。",
+    "technologies": [
+      "py5",
+      "OpenCV",
+      "Contour Extraction",
+      "Generative Drawing",
+      "Motion Study"
+    ],
+    "sceneObject": null,
+    "cover": "projects/horse-motion-study/cover.webp",
+    "previewVideo": "projects/horse-motion-study/horse-preview.mp4",
+    "gallery": [
+      "projects/horse-motion-study/contour-study.webp",
+      "projects/horse-motion-study/motion-variation.webp"
+    ],
+    "externalLinks": [],
+    "videos": [
+      {
+        "src": "projects/horse-motion-study/horse-preview.mp4",
+        "label": "算法动画片段",
+        "kind": "local",
+        "poster": "posters/horse-motion-study-horse-preview.webp",
+        "posterType": "video-frame",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "titleCn": "马的算法运动研究",
+    "detailZh": "这是与 Stubborn Horse 游戏不同的生成艺术研究。我从马的图像和轮廓出发，使用 OpenCV 提取边缘，并以 py5、噪声与轮廓转译方法生成动态线条和多种视觉变体。项目探索手工绘画、算法笔触与时间性图像之间的关系，重点在图像处理和生成式动态表达，而非游戏机制。",
+    "priority": 4.5,
+    "collection": "experiment",
+    "group": "Generative",
+    "isTeam": false,
+    "responsibility": "视觉实验、图像处理、生成式绘图与动画输出。",
+    "responsibilityReviewNote": null,
+    "links": [],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "dragon-dance",
+    "cover": null,
+    "sceneObject": null,
+    "gallery": [],
+    "previewVideo": null,
+    "title": "Dragon Dance",
+    "titleCn": "舞龙：多人在线互动",
+    "category": "Creative Coding / Multiplayer Web",
+    "summary": "一条龙进入多人共享空间，玩家的竞争改变整个世界的资源流动。",
+    "detailZh": "Dragon Dance 是一个使用 p5.js、Node.js 和 Socket.io 构建的多人在线互动游戏。玩家在共享场景中操控舞龙造型、收集资源与实时竞争；失败角色的身体会转化为金币，成为其他玩家可以拾取的资源。作品通过网络同步、实时反馈和排行榜，将传统舞龙意象转化为具有循环规则的数字互动空间。",
+    "technologies": [
+      "p5.js",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "Socket.io",
+      "Real-time Interaction"
+    ],
+    "priority": 5,
+    "collection": "main",
+    "group": "Interactive Web",
+    "isTeam": true,
+    "responsibility": null,
+    "responsibilityReviewNote": "团队项目：具体个人分工请与仓库合作者核实后再公开。",
+    "links": [
+      {
+        "kind": "live",
+        "label": "在线体验",
+        "url": "https://dragon-dance.onrender.com/"
+      },
+      {
+        "kind": "github",
+        "label": "查看代码",
+        "url": "https://github.com/lixinisydney-cloud/Dragon-Dance"
+      }
+    ],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "多人互动演示",
+        "url": "https://www.youtube.com/watch?v=8aRfY_WLNl0",
+        "videoId": "8aRfY_WLNl0",
+        "poster": "posters/dragon-dance-film.svg",
+        "posterType": "text",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "year": null,
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": null,
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
+  },
+  {
+    "slug": "the-uncertain-oracle",
+    "cover": null,
+    "sceneObject": null,
+    "gallery": [],
+    "previewVideo": null,
+    "title": "The Uncertain Oracle",
+    "titleCn": "不确定的神谕",
+    "category": "Gesture Interaction / Creative Coding",
+    "summary": "通过手势翻开一张卡片，得到一段等待自己解读的回答。",
+    "detailZh": "The Uncertain Oracle 将“答案之书”和塔罗占卜的仪式感转化为摄像头驱动的网页交互。用户提出问题后，通过手势与悬浮卡片互动，系统根据手部动作触发选牌，并从预设文本中生成开放式回答。项目结合实时手部追踪、图形动画与文字反馈，关注身体输入如何改变人们与数字内容的关系。",
+    "technologies": [
+      "p5.js",
+      "MediaPipe",
+      "JavaScript",
+      "Gesture Tracking",
+      "JSON"
+    ],
+    "priority": 6,
+    "collection": "main",
+    "group": "Interactive Web",
+    "isTeam": true,
+    "responsibility": null,
+    "responsibilityReviewNote": "团队项目：仓库列有合作作者，具体个人分工待确认。",
+    "links": [
+      {
+        "kind": "live",
+        "label": "在线体验",
+        "url": "https://the-uncertain-oracle-itaa.onrender.com"
+      },
+      {
+        "kind": "github",
+        "label": "查看代码",
+        "url": "https://github.com/lixinisydney-cloud/The-Uncertain-Oracle"
+      }
+    ],
+    "videos": [
+      {
+        "kind": "youtube",
+        "label": "手势互动演示",
+        "url": "https://www.youtube.com/watch?v=1chPTqrWrQw",
+        "videoId": "1chPTqrWrQw",
+        "poster": "posters/oracle-film.svg",
+        "posterType": "text",
+        "source": "planning/phase3a/03_project_content_v3.json"
+      }
+    ],
+    "year": null,
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": null,
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
   },
   {
     "slug": "city-life-is-fun",
     "title": "城市生活有意思",
-    "category": "Visual Identity / Creative Coding",
+    "category": "Campaign Visual / Vibe Coding",
     "year": null,
-    "summary": "A playful campaign visual system and interactive web experience around everyday urban life.",
+    "summary": "把城市日常的趣味转译为可擦开、可探索的互动海报。",
     "technologies": [
       "Visual Design",
-      "Creative Coding",
-      "Vibe Coding"
+      "HTML / CSS / JavaScript",
+      "Canvas",
+      "Vibe Coding",
+      "Motion Assets"
     ],
     "sceneObject": "scene/city-life.png",
     "cover": "projects/city-life-is-fun/cover-provisional.webp",
@@ -81,99 +404,101 @@
     "videos": [
       {
         "src": "projects/city-life-is-fun/cat-preview.mp4",
-        "label": "Cat motion preview"
+        "label": "小猫动效",
+        "kind": "local",
+        "poster": "posters/city-life-is-fun-cat-preview.webp",
+        "posterType": "video-frame",
+        "source": "planning/phase3a/03_project_content_v3.json"
       },
       {
         "src": "projects/city-life-is-fun/pigeon-preview.mp4",
-        "label": "Pigeon motion preview"
+        "label": "鸽子动效",
+        "kind": "local",
+        "poster": "posters/city-life-is-fun-pigeon-preview.webp",
+        "posterType": "video-frame",
+        "source": "planning/phase3a/03_project_content_v3.json"
       },
       {
         "src": "projects/city-life-is-fun/camera-preview.mp4",
-        "label": "Camera motion preview"
+        "label": "相机动效",
+        "kind": "local",
+        "poster": "posters/city-life-is-fun-camera-preview.webp",
+        "posterType": "video-frame",
+        "source": "planning/phase3a/03_project_content_v3.json"
       },
       {
         "src": "projects/city-life-is-fun/planter-preview.mp4",
-        "label": "Planter motion preview"
+        "label": "盆栽动效",
+        "kind": "local",
+        "poster": "posters/city-life-is-fun-planter-preview.webp",
+        "posterType": "video-frame",
+        "source": "planning/phase3a/03_project_content_v3.json"
       }
-    ]
-  },
-  {
-    "slug": "anger-market",
-    "title": "Anger Market",
-    "category": "Visual Identity / Speculative Design",
-    "year": null,
-    "summary": "A speculative visual system for a fictional company that captures, classifies and commodifies social-media anger.",
-    "technologies": [
-      "Visual Identity",
-      "Graphic Design",
-      "Data Storytelling",
-      "Speculative Design"
     ],
-    "sceneObject": "scene/anger-market.png",
-    "cover": "projects/anger-market/cover.webp",
-    "previewVideo": null,
-    "gallery": [
-      "projects/anger-market/graphic-system.webp",
-      "projects/anger-market/brand-guideline-01.webp",
-      "projects/anger-market/brand-guideline-02.webp",
-      "projects/anger-market/brand-guideline-03.webp",
-      "projects/anger-market/printed-material.webp"
-    ],
-    "externalLinks": []
-  },
-  {
-    "slug": "chroma-residences",
-    "title": "Chroma Residences: Living in Color",
-    "category": "Spatial / Installation Design",
-    "year": null,
-    "summary": "A modular architectural exploration of rental housing, class differences and the tension between shared and private space.",
-    "technologies": [
-      "Spatial Design",
-      "Arduino",
-      "Cinema 4D",
-      "Physical Model"
-    ],
-    "sceneObject": "scene/chroma-residences.png",
-    "cover": "projects/chroma-residences/cover.webp",
-    "previewVideo": null,
-    "gallery": [
-      "projects/chroma-residences/module-tower.webp",
-      "projects/chroma-residences/module-assembly.webp",
-      "projects/chroma-residences/installation-detail.webp",
-      "projects/chroma-residences/building-detail.webp"
-    ],
-    "externalLinks": [
+    "titleCn": "城市生活有意思",
+    "detailZh": "围绕“城市生活有意思”的活动主题，我设计了融合低多边形视觉元素的城市主视觉，并将平面海报延伸为可交互的网页体验。用户可以移动放大镜，逐步揭开小猫、鸽子、盆栽与相机等元素，并触发动态反馈。项目结合 AI 辅助编程（Vibe Coding）、前端实现与视觉素材调校，探索视觉传播如何从静态画面扩展为可参与的数字体验。",
+    "priority": 7,
+    "collection": "main",
+    "group": "Visual + Web",
+    "isTeam": false,
+    "responsibility": "活动主视觉、互动概念、素材组织、AI 辅助前端实现与效果验证。",
+    "responsibilityReviewNote": null,
+    "links": [
       {
-        "label": "Project video",
-        "url": "https://youtu.be/xEc4Kw6O3hY"
+        "kind": "live",
+        "label": "在线体验",
+        "url": "https://lixinisydney-cloud.github.io/city/"
+      },
+      {
+        "kind": "github",
+        "label": "查看代码",
+        "url": "https://github.com/lixinisydney-cloud/city"
       }
-    ]
+    ],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
   },
   {
-    "slug": "horse-motion-study",
-    "title": "From Static Image to Motion: Algorithmic Reinterpretations of a Horse",
-    "category": "Generative Art / Motion",
+    "slug": "good-boy",
+    "title": "GOOD BOY",
+    "category": "Interactive Installation / Physical Computing",
     "year": null,
-    "summary": "An algorithmic motion study using contour-based drawing and computational reinterpretations of a running horse.",
+    "summary": "你以为自己在训练狗，实际上是系统在训练你。",
     "technologies": [
-      "py5",
-      "OpenCV",
-      "Generative Drawing",
-      "Animation"
+      "p5.js",
+      "Raspberry Pi Pico",
+      "HX711 / Load Cell",
+      "Web Serial",
+      "MediaPipe",
+      "Blender"
     ],
-    "sceneObject": null,
-    "cover": "projects/horse-motion-study/cover.webp",
-    "previewVideo": "projects/horse-motion-study/horse-preview.mp4",
+    "sceneObject": "scene/good-boy.png",
+    "cover": "projects/good-boy/cover.webp",
+    "previewVideo": null,
     "gallery": [
-      "projects/horse-motion-study/contour-study.webp",
-      "projects/horse-motion-study/motion-variation.webp"
+      "projects/good-boy/exhibition-photo.webp",
+      "projects/good-boy/dog-park-interface.webp",
+      "projects/good-boy/dog-character.webp"
     ],
     "externalLinks": [],
-    "videos": [
-      {
-        "src": "projects/horse-motion-study/horse-preview.mp4",
-        "label": "Horse motion preview"
-      }
-    ]
+    "assetNote": "The exhibition photograph is currently low resolution. Higher-resolution documentation will replace it when available.",
+    "titleCn": "GOOD BOY",
+    "detailZh": "GOOD BOY 是一件关于公共空间规训与行为反馈的交互装置。观众握住实体狗绳，根据屏幕指令调整力度，尝试引导虚拟狗恢复“正确”状态；与此同时，监控视窗与评价机制持续记录观众的动作。作品通过实体传感器、实时通信、计算机视觉与 3D 动画，让看似轻松的互动逐渐显露系统对人的控制。",
+    "priority": 8,
+    "collection": "main",
+    "group": "Interactive Installation",
+    "isTeam": false,
+    "responsibility": "概念研究、交互流程、实体传感器集成、p5.js 编程、Blender 动画和展陈设计。",
+    "responsibilityReviewNote": null,
+    "links": [],
+    "videos": [],
+    "sources": {
+      "editorial": "planning/phase3a/03_project_content_v3.json",
+      "media": "phase2-existing-assets",
+      "review": "planning/phase3a/02_project_copy_cn.md"
+    }
   }
 ]

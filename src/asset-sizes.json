@@ -142,5 +142,53 @@
   "projects/the-making-of-pets/flying-animal.webp": [
     1011,
     569
+  ],
+  "posters/anger-film-01.webp": [
+    1350,
+    900
+  ],
+  "posters/anger-film-02.webp": [
+    1600,
+    816
+  ],
+  "posters/horse-motion-study-horse-preview.webp": [
+    960,
+    540
+  ],
+  "posters/city-life-is-fun-pigeon-preview.webp": [
+    960,
+    960
+  ],
+  "posters/city-life-is-fun-planter-preview.webp": [
+    960,
+    960
+  ],
+  "posters/city-life-is-fun-camera-preview.webp": [
+    960,
+    960
+  ],
+  "posters/chroma-film.webp": [
+    1600,
+    900
+  ],
+  "posters/pets-film.webp": [
+    1600,
+    900
+  ],
+  "posters/city-life-is-fun-cat-preview.webp": [
+    960,
+    960
+  ],
+  "posters/stubborn-horse-film.svg": [
+    1600,
+    900
+  ],
+  "posters/oracle-film.svg": [
+    1600,
+    900
+  ],
+  "posters/dragon-dance-film.svg": [
+    1600,
+    900
   ]
 }
