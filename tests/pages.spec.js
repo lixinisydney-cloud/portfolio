@@ -11,7 +11,7 @@ let base;
 test.beforeAll(async () => {
   execFileSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build']);
   const root = resolve('dist');
-  const mime = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.mp4': 'video/mp4' };
+  const mime = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.mp4': 'video/mp4', '.svg': 'image/svg+xml' };
   server = createServer(async (req, res) => {
     const path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     if (!path.startsWith('/portfolio/')) { res.writeHead(404).end(); return; }
@@ -28,7 +28,7 @@ test.afterAll(async () => { if (server) await new Promise(resolve => server.clos
 test('built site works under GitHub Pages repository path, including every asset and video', async ({ page, request }) => {
   const failures = [];
   page.on('response', response => { if (response.status() >= 400) failures.push(response.url()); });
-  const paths = new Set(projects.flatMap(p => [p.sceneObject, p.cover, ...p.gallery, ...(p.videos || []).map(v => v.src)]).filter(Boolean));
+  const paths = new Set(projects.flatMap(p => [p.sceneObject, p.cover, ...p.gallery, ...(p.videos || []).flatMap(v => [v.src, v.poster])]).filter(Boolean));
   for (const path of paths) {
     const response = await request.get(`${base}assets/${path}`);
     expect(response.ok(), path).toBe(true);
@@ -41,18 +41,20 @@ test('built site works under GitHub Pages repository path, including every asset
     expect(await img.getAttribute('src')).toMatch(/^\.\/assets\//);
   }
   await page.locator('.world-object').first().click();
-  await page.getByRole('link', { name: 'View Project' }).click();
+  await page.getByRole('link', { name: '查看作品' }).click();
   await page.reload();
   await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
-  await page.getByRole('link', { name: 'Back to selected works', exact: false }).first().click();
+  await page.getByRole('link', { name: '返回作品', exact: false }).first().click();
   await page.goBack();
   await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
-  for (const project of projects.filter(p => p.videos?.length)) {
+  for (const project of projects.filter(p => p.videos?.some(v => v.kind === 'local'))) {
     await page.goto(`${base}#/projects/${project.slug}`);
     for (const button of await page.locator('.load-video').all()) {
+      const index = Number(await button.getAttribute('data-video-index'));
+      if (project.videos[index].kind !== 'local') continue;
       const id = await button.getAttribute('aria-controls');
       await button.click();
-      const video = page.locator(`#${id}`);
+      const video = page.locator(`#${id} video`);
       await expect.poll(() => video.evaluate(el => el.readyState)).toBeGreaterThanOrEqual(2);
       await expect.poll(() => video.evaluate(el => el.error)).toBeNull();
       await video.evaluate(el => el.pause());

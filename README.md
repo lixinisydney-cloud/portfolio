@@ -1,6 +1,6 @@
 # SYDNEY'S WORLD
 
-Vite + vanilla JavaScript + Parallax.js portfolio. Five real PNG scene objects, six selected works, accessible previews and shared hash-routed project details. No React, Astro, GSAP or Three.js.
+Vite + vanilla JavaScript + Parallax.js portfolio. Five unchanged PNG scene objects, eight Chinese-first main works plus one separate algorithmic experiment, accessible previews and shared hash-routed details. No React, Astro, GSAP or Three.js.
 
 ## Development
 
@@ -32,7 +32,7 @@ Local tests use system Chromium at `/usr/bin/chromium`; CI uses the Chromium ins
 
 Parallax owns `.parallax-layer` transforms. Hover/focus scaling belongs to `.world-object`; perspective belongs to `.object-art`. Keep future GSAP transform animations off Parallax wrappers. Images use `object-fit: contain` to avoid distortion or cropping.
 
-Mouse parallax is enabled only for fine-pointer desktop devices above 800px, with reduced motion off. Mobile uses a static grid with always-visible titles. The native dialog supports Escape, focus containment, close and focus return. Every preview includes a View Project link. The horse motion study appears only in Selected Works and is independent of Stubborn Horse.
+Mouse parallax is enabled only for fine-pointer desktop devices above 800px, with reduced motion off. Mobile uses a static grid with always-visible titles. The native dialog supports Escape, focus containment, close and focus return. Every preview includes a View Project link. The horse motion study appears in the separate experiment area and is independent of Stubborn Horse.
 
 ## GitHub Pages
 
@@ -40,11 +40,11 @@ Mouse parallax is enabled only for fine-pointer desktop devices above 800px, wit
 
 Details use `#/projects/<slug>` (e.g. `/portfolio/#/projects/good-boy`). Hash routes always request the real `index.html`, so refresh and browser back/forward work without a server rewrite or `404.html` trick. An unknown project shows a return link. Deploy the generated **dist directory**, not the source directory. The Pages workflow below publishes this directory automatically after main passes validation.
 
-Galleries are lazy loaded. Videos have `preload="none"` and receive no `src` until Play is pressed; navigation stops and unloads them. Black-backed city videos remain inside black players, never as transparent scene overlays. Broken images and failed playback show a readable fallback. External links are taken from the supplied data; no third-party API or embed is loaded automatically.
+Galleries are lazy loaded. VideoPoster displays a local poster first; local videos and YouTube iframes are created only after Play is pressed. Navigation stops and unloads both. Black-backed city videos remain inside black players, never as transparent scene overlays. Broken images and failed playback show a readable fallback. External links are taken from the supplied data; YouTube embeds load only after an explicit click.
 
 ## Validation
 
-`npm run build` and `npm test` cover mouse parallax, six previews, keyboard/touch, reduced motion, all details and galleries, hash refresh/history, mobile overflow, missing-media fallbacks, on-demand video loading and the built site under `/portfolio/`. Production tests request all 37 used asset files and decode each of the five MP4s in Chromium.
+`npm run build` and `npm test` cover mouse parallax, nine previews, keyboard/touch, reduced motion, all details and galleries, hash refresh/history, mobile overflow, missing-media fallbacks, on-demand video loading and the built site under `/portfolio/`. Production tests request referenced media/posters and decode all five local MP4s in Chromium. YouTube is tested with a blocked-provider response and a persistent external fallback, without automatic external requests.
 
 ## Deploy to GitHub Pages
 
@@ -62,3 +62,7 @@ After the deploy job succeeds, check the public homepage, one project URL on ref
 ## License
 
 The initial repository contained only `.gitattributes` and no license; no project license has been assumed. Parallax.js is MIT licensed, with its notice in `public/THIRD_PARTY_NOTICES.txt`, copied into the build. Supplied project assets retain their original ownership.
+
+## Phase A content foundation
+
+See [migration, component, poster provenance and missing-media guide](docs/phase3a-content-foundation.md). Run `node scripts/merge-project-content.mjs` to merge verified editorial content by slug, or use `--check` to verify repeatability without writing. Existing media paths are preserved. Site copy and contact details are in `content/site.json`; the source files stay in `planning/phase3a/`. Hero artwork, object geometry, the existing grid rules and Pages base are unchanged.

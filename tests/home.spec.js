@@ -5,7 +5,7 @@ test('desktop projects, mouse parallax, keyboard dialog and navigation', async (
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('/');
   await expect(page.locator('.world-object')).toHaveCount(5);
-  await expect(page.locator('.work-card')).toHaveCount(6);
+  await expect(page.locator('.work-card')).toHaveCount(9);
   await page.mouse.move(200, 200);
   await page.waitForTimeout(500);
   const before = await page.locator('.object-good-boy').evaluate(el => el.style.transform);
@@ -23,10 +23,10 @@ test('desktop projects, mouse parallax, keyboard dialog and navigation', async (
   for (const card of await page.locator('.work-card').all()) {
     await card.click();
     await expect(page.getByRole('dialog')).toBeVisible();
-    await page.getByRole('button', { name: 'Close project preview' }).click();
+    await page.getByRole('button', { name: '关闭作品预览' }).click();
     await expect(card).toBeFocused();
   }
-  await page.getByRole('navigation').getByRole('link', { name: 'About' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: '关于' }).click();
   await expect(page).toHaveURL(/#about$/);
   expect(errors).toEqual([]);
 });
@@ -39,7 +39,7 @@ test('touch layout exposes every title and opens preview without hover', async (
     await expect(button.locator('.object-label')).toHaveCSS('opacity', '1');
     await button.tap();
     await expect(page.getByRole('dialog')).toBeVisible();
-    await page.getByRole('button', { name: 'Close project preview' }).tap();
+    await page.getByRole('button', { name: '关闭作品预览' }).tap();
   }
   expect(await page.locator('.object-good-boy').evaluate(el => el.style.transform)).toBe('');
   await context.close();
