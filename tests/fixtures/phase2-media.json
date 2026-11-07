@@ -1,0 +1,95 @@
+[
+  {
+    "slug": "good-boy",
+    "cover": "projects/good-boy/cover.webp",
+    "sceneObject": "scene/good-boy.png",
+    "gallery": [
+      "projects/good-boy/exhibition-photo.webp",
+      "projects/good-boy/dog-park-interface.webp",
+      "projects/good-boy/dog-character.webp"
+    ],
+    "previewVideo": null
+  },
+  {
+    "slug": "the-making-of-pets",
+    "cover": "projects/the-making-of-pets/cover.webp",
+    "sceneObject": "scene/making-of-pets.png",
+    "gallery": [
+      "projects/the-making-of-pets/world-map.webp",
+      "projects/the-making-of-pets/flying-animal.webp",
+      "projects/the-making-of-pets/horse-scene.webp",
+      "projects/the-making-of-pets/garden-scene.webp",
+      "projects/the-making-of-pets/visual-system.webp",
+      "projects/the-making-of-pets/cow-character.webp"
+    ],
+    "previewVideo": null
+  },
+  {
+    "slug": "city-life-is-fun",
+    "cover": "projects/city-life-is-fun/cover-provisional.webp",
+    "sceneObject": "scene/city-life.png",
+    "gallery": [
+      "projects/city-life-is-fun/campaign-background.webp"
+    ],
+    "previewVideo": "projects/city-life-is-fun/cat-preview.mp4",
+    "videos": [
+      {
+        "src": "projects/city-life-is-fun/cat-preview.mp4",
+        "label": "Cat motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/pigeon-preview.mp4",
+        "label": "Pigeon motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/camera-preview.mp4",
+        "label": "Camera motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/planter-preview.mp4",
+        "label": "Planter motion preview"
+      }
+    ]
+  },
+  {
+    "slug": "anger-market",
+    "cover": "projects/anger-market/cover.webp",
+    "sceneObject": "scene/anger-market.png",
+    "gallery": [
+      "projects/anger-market/graphic-system.webp",
+      "projects/anger-market/brand-guideline-01.webp",
+      "projects/anger-market/brand-guideline-02.webp",
+      "projects/anger-market/brand-guideline-03.webp",
+      "projects/anger-market/printed-material.webp"
+    ],
+    "previewVideo": null
+  },
+  {
+    "slug": "chroma-residences",
+    "cover": "projects/chroma-residences/cover.webp",
+    "sceneObject": "scene/chroma-residences.png",
+    "gallery": [
+      "projects/chroma-residences/module-tower.webp",
+      "projects/chroma-residences/module-assembly.webp",
+      "projects/chroma-residences/installation-detail.webp",
+      "projects/chroma-residences/building-detail.webp"
+    ],
+    "previewVideo": null
+  },
+  {
+    "slug": "horse-motion-study",
+    "cover": "projects/horse-motion-study/cover.webp",
+    "sceneObject": null,
+    "gallery": [
+      "projects/horse-motion-study/contour-study.webp",
+      "projects/horse-motion-study/motion-variation.webp"
+    ],
+    "previewVideo": "projects/horse-motion-study/horse-preview.mp4",
+    "videos": [
+      {
+        "src": "projects/horse-motion-study/horse-preview.mp4",
+        "label": "Horse motion preview"
+      }
+    ]
+  }
+]

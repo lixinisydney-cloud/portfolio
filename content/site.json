@@ -1,0 +1,16 @@
+{
+  "name": "SYDNEY'S WORLD",
+  "cnTagline": "欢迎来到我的灵感小岛。",
+  "enTagline": "A world of creative experiments.",
+  "heroSubtitle": "用动画、代码与装置，让想象成为可以体验的世界。",
+  "roleEn": "Creative Technologist & Interactive Designer",
+  "aboutShortZh": "我是一名专注创意编程与交互体验的多媒体设计师，喜欢把视觉、代码和真实世界连接起来。",
+  "aboutZh": "我拥有 Goldsmiths, University of London 计算艺术（Computational Arts）硕士背景，创作横跨互动网页、3D 动画、生成视觉与实体装置。项目中，我会从概念研究和视觉设计出发，使用 p5.js、JavaScript、Processing／py5、Arduino／Raspberry Pi Pico、MediaPipe、Cinema 4D 和 Blender 等工具，将想法做成可以体验的作品。我也使用 AI 辅助编程（AI-assisted Coding）与 Vibe Coding 加速原型搭建和网页实现，并持续亲自检查交互逻辑、视觉效果与最终体验。目前希望从事创意设计、互动设计及多媒体／数字媒体设计相关工作。",
+  "contact": {
+    "email": "lixinisydney@163.com",
+    "instagram": "https://www.instagram.com/sydney_nininn",
+    "github": "https://github.com/lixinisydney-cloud"
+  },
+  "lang": "zh-CN",
+  "source": "planning/phase3a/03_project_content_v3.json"
+}

@@ -1,0 +1,24 @@
+﻿source,original_name_or_existing_path,proposed_target_under_public_assets,purpose,review_action
+sucai.zip,10_1000.jpg,world/reference-fountain-full.jpg,岛屿/喷泉整体氛围参考,大场景参考，非透明，方案B重新构图或作为详情视觉
+sucai.zip,11_1000.png,world/old-fountain-cutout.png,旧喷泉场景剪影,透明，先裁掉空白，再复合到新岛屿
+sucai.zip,20_1000.png,world/old-park-cutout.png,喷泉小岛场景元素,透明，适合提取形体复用
+sucai.zip,23_1000.png,world/flying-creatures-group.png,远景飞行动物,透明，适合景深后层
+sucai.zip,24_1000.png,world/flying-sheep.png,动物点缀：飞羊,透明，需裁切到主体
+sucai.zip,25_1000.png,world/flying-cow.png,动物点缀：奶牛,透明，裁切主体；避免画面太挤
+sucai.zip,28_1000.png,world/flying-pig.png,动物点缀：飞猪,透明，裁切主体
+sucai.zip,29_1000.png,world/flying-deer.png,动物点缀：飞鹿,透明，裁切主体
+sucai.zip,34.png,ui/ornament-corner-left.png,视频/卡片角花,透明，有必要时以图标方式复用
+sucai.zip,35.png,ui/ornament-corner-right.png,视频/卡片角花,透明，尺寸精简
+sucai.zip,36.png,ui/ornament-header.png,装饰纹样,透明，小范围点缀
+sucai.zip,37.png,ui/ornament-divider.png,章节分隔装饰,透明，小范围点缀
+sucai.zip,40.png,world/pink-atmosphere-cutout.png,天空/粉雾氛围参考,不直接贴为固定背景，图层具有透明区
+sucai.zip,41.png,ui/ornament-frame.png,椭圆框,透明，适合预览弹窗细节
+sucai.zip,48_1000.png,world/water-garden-reference.jpg,水景近景参考,不透明，做参考/细节图，不可直接漂浮
+sucai.zip,72_0060.png,world/cow-standing.png,实体奶牛备用素材,透明，可能与飞行牛重复，别双双堆放
+sucai.zip,85_0060.png,world/architectural-portal.png,建筑门/小型展台,透明，需按空间透视校准
+sucai.zip,90_1000.png,projects/the-making-of-pets/reference-closeup.jpg,宠物项目近景,真实作品详情图，不做网站假装通用视觉
+existing-website,scene/good-boy.png,projects/good-boy/original-scene-object.png,原 GOOD BOY 首页物件,保留为真实项目作品的导航物件，不改变内容
+existing-website,scene/making-of-pets.png,projects/the-making-of-pets/original-scene-object.png,原 Pets 首页奶牛物件,和新岛屿装饰不要重复出现太多次
+existing-website,scene/city-life.png,projects/city-life-is-fun/original-scene-object.png,原 City 首页小猫物件,遵循真实主视觉的色彩，不改造成 Pets 作品成果
+existing-website,scene/anger-market.png,projects/anger-market/original-scene-object.png,原 Anger 首页物件,高度饱和，置于较弱视觉权重区域
+existing-website,scene/chroma-residences.png,projects/chroma-residences/original-scene-object.png,原 Chroma 首页物件,避免小到像素无法分辨，留大图入口
