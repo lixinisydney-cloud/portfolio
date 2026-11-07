@@ -17,7 +17,7 @@ npm run preview
 For a read-only home directory, use `npm ci --cache /tmp/sydney-npm-cache`.
 Use the existing checkout; a separate Git worktree is unnecessary.
 
-Tests use system Chromium at `/usr/bin/chromium`. On another machine, install a Playwright browser and remove `executablePath` from `playwright.config.js` or use your installed Chromium path. The production-path test builds the site and serves it under `/portfolio/` without an SPA fallback.
+Local tests use system Chromium at `/usr/bin/chromium`; CI uses the Chromium installed by Playwright. On another machine, install a Playwright browser and remove `executablePath` from `playwright.config.js` or use your installed Chromium path. The production-path test builds the site and serves it under `/portfolio/` without an SPA fallback.
 
 ## Content and code
 
@@ -38,13 +38,26 @@ Mouse parallax is enabled only for fine-pointer desktop devices above 800px, wit
 
 `vite.config.js` uses `base: './'`: the same build can be hosted at the root or a repository prefix such as `/portfolio/`. Runtime assets are prefixed with `import.meta.env.BASE_URL`; there are no hardcoded `/assets/...` URLs.
 
-Details use `#/projects/<slug>` (e.g. `/portfolio/#/projects/good-boy`). Hash routes always request the real `index.html`, so refresh and browser back/forward work without a server rewrite or `404.html` trick. An unknown project shows a return link. Deploy the generated **dist directory**, not the source directory. No automatic deployment workflow has been added.
+Details use `#/projects/<slug>` (e.g. `/portfolio/#/projects/good-boy`). Hash routes always request the real `index.html`, so refresh and browser back/forward work without a server rewrite or `404.html` trick. An unknown project shows a return link. Deploy the generated **dist directory**, not the source directory. The Pages workflow below publishes this directory automatically after main passes validation.
 
 Galleries are lazy loaded. Videos have `preload="none"` and receive no `src` until Play is pressed; navigation stops and unloads them. Black-backed city videos remain inside black players, never as transparent scene overlays. Broken images and failed playback show a readable fallback. External links are taken from the supplied data; no third-party API or embed is loaded automatically.
 
 ## Validation
 
 `npm run build` and `npm test` cover mouse parallax, six previews, keyboard/touch, reduced motion, all details and galleries, hash refresh/history, mobile overflow, missing-media fallbacks, on-demand video loading and the built site under `/portfolio/`. Production tests request all 37 used asset files and decode each of the five MP4s in Chromium.
+
+## Deploy to GitHub Pages
+
+1. Open repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**.
+2. Merge the project/deployment pull request into `main`. The branch contains the existing MVP and real-project integration as well as Pages configuration, since `main` previously contained assets only.
+3. In **Actions → Deploy to GitHub Pages**, confirm **Build and test** and **Publish GitHub Pages** both succeed. If the `github-pages` environment has required reviewers, complete that review in GitHub.
+4. The intended public URL is **https://lixinisydney-cloud.github.io/portfolio/**. A detail URL is **https://lixinisydney-cloud.github.io/portfolio/#/projects/good-boy**.
+
+`.github/workflows/pages.yml` installs Node 24, runs `npm ci`, `npm run build`, installs Playwright Chromium and runs all browser tests. PRs validate without deploying. A push to `main`, or a manual workflow run on `main`, uploads `dist` and deploys it using the official Pages actions. The deploy job has only `pages: write` and `id-token: write` in addition to the read-only build permissions. No personal token or custom deployment secret is needed.
+
+Keep `base: './'` in Vite: both generated entry files and runtime media paths resolve within `/portfolio/`. Hash details do not change the document path. The production test serves actual build files under `/portfolio/`, checks all 37 referenced assets and decodes all five MP4s; this is local verification, not proof of a live deployment.
+
+After the deploy job succeeds, check the public homepage, one project URL on refresh, Back navigation, images and a click-to-load video. A green PR build alone does not mean the site has been published.
 
 ## License
 
