@@ -1,0 +1,30 @@
+﻿file,source,purpose,notes,width,height,size_kb
+public/assets/world/island-main.webp,sucai.zip / 12_1000.png,Hero bottom/middle island; user’s actual artwork,"The selected original isolated fountain render; top-level hero layout, no AI island replacement",1738,1080,180.4
+public/assets/world/flying-cow.webp,sucai.zip / 25_1000.png,Parallax animal on right side,Original Pets animation render,610,950,130.9
+public/assets/world/flying-deer.webp,sucai.zip / 29_1000.png,Parallax animal toward hero edge,Original Pets animation render,1000,572,66.7
+public/assets/world/flying-rabbit.webp,sucai.zip / 26_1000.png,Optional very small animal,Optional; do not show all animals simultaneously,850,616,47.4
+public/assets/world/dream-flora.webp,sucai.zip / 81_0060.png,Optional floating plant,Original flora; use 0-1 instances only,850,441,177.2
+public/assets/world/water-splash.webp,sucai.zip / 84_1000.png,Optional water texture accent,Use sparingly,800,552,81.1
+public/assets/world/ornament-oval-original.webp,sucai.zip / 41.png,Optional small detail ornament,Use the existing original ornamental motif,367,650,50.3
+public/assets/world/soft-sky-bg.webp,sucai.zip / 30_1000.png,Optional soft pastel sky background,Static image; CSS gradient is also valid,1650,928,6.5
+public/assets/world/water-ribbon.webp,Generated visual asset / a_high_detail_isolated_3d_style_decorative_orname_1_batch_1.png,Floating water-ribbon ornament,"Optional atmosphere decoration, not a project artifact",694,920,300.4
+public/assets/world/crystal-flora.webp,Generated visual asset / a_highly_detailed_dreamy_pearlescent_3d_decorativ_2_batch_2.png,Floating pearl-crystal floral element,"Optional atmosphere decoration, not a project artifact",766,920,329.6
+public/assets/ui/ornament-corner-top-left.webp,Generated rococo sheet / quadrant top-left,Optional corner ornament for section or card,Use only 1–2 ornaments on a screen,444,460,70.9
+public/assets/ui/ornament-corner-top-right.webp,Generated rococo sheet / quadrant top-right,Optional corner ornament for section or card,Use only 1–2 ornaments on a screen,443,460,72.1
+public/assets/ui/ornament-corner-bottom-left.webp,Generated rococo sheet / quadrant bottom-left,Optional corner ornament for section or card,Use only 1–2 ornaments on a screen,452,460,67.9
+public/assets/ui/ornament-corner-bottom-right.webp,Generated rococo sheet / quadrant bottom-right,Optional corner ornament for section or card,Use only 1–2 ornaments on a screen,453,460,67.2
+public/assets/ui/button-capsule.webp,Generated button asset sheet / button-capsule.webp,Ornate pill/button skin,Actual accessible button must remain an HTML button/link; decoration only,780,289,68.8
+public/assets/ui/button-play.webp,Generated button asset sheet / button-play.webp,Video play decoration,Actual accessible button must remain an HTML button/link; decoration only,207,240,17.5
+public/assets/ui/button-visit.webp,Generated button asset sheet / button-visit.webp,External visit decoration,Actual accessible button must remain an HTML button/link; decoration only,204,240,18.7
+public/assets/ui/icon-pearl-star.webp,Generated button asset sheet / icon-pearl-star.webp,Small section decor,Actual accessible button must remain an HTML button/link; decoration only,240,214,26.7
+public/assets/ui/cursors/cursor-arrow.png,Generated 3-cursor sheet / panel 1,Optional desktop cursor state,Fallback to system cursor; disable on mobile; likely too pale on light background,48,48,3.9
+public/assets/ui/cursors/cursor-hover.png,Generated 3-cursor sheet / panel 2,Optional desktop cursor state,Fallback to system cursor; disable on mobile; likely too pale on light background,48,48,4.2
+public/assets/ui/cursors/cursor-sparkle.png,Generated 3-cursor sheet / panel 3,Optional desktop cursor state,Fallback to system cursor; disable on mobile; likely too pale on light background,48,48,4.0
+public/assets/phase3b-references/city-life-final-poster.webp,补充.zip / #U57ce#U5e02#U751f#U6d3b#U6709#U610f#U601d#U56fe#U7247.png,High priority: replace provisional city cover after checking,Candidate image only; use after reviewing crop & project identity,938,1250,105.6
+public/assets/phase3b-references/dragon-dance-screenshot.webp,补充.zip / #U821e#U9f99.png,Dragon Dance screenshot,Candidate image only; use after reviewing crop & project identity,1250,603,30.3
+public/assets/phase3b-references/uncertain-oracle-screenshot.webp,补充.zip / #U7b54#U6848#U4e4b#U4e66.png,The Uncertain Oracle screenshot,Candidate image only; use after reviewing crop & project identity,1250,657,194.8
+public/assets/phase3b-references/stubborn-horse-screenshot.webp,补充.zip / #U56fa#U6267#U7684#U9a6c#U8349#U56fe#U80cc#U666f.png,Stubborn Horse screenshot,Candidate image only; use after reviewing crop & project identity,1250,703,33.4
+public/assets/phase3b-references/horse-motion-frame-01.webp,补充.zip / horse1.png,Horse motion optional gallery frame,Candidate image only; use after reviewing crop & project identity,900,900,17.0
+public/assets/phase3b-references/horse-motion-frame-02.webp,补充.zip / horse3.1.png,Horse motion optional gallery frame,Candidate image only; use after reviewing crop & project identity,900,900,22.2
+public/assets/phase3b-references/horse-motion-frame-03.webp,补充.zip / horse55.png,Horse motion optional gallery frame,Candidate image only; use after reviewing crop & project identity,900,900,15.1
+public/assets/phase3b-references/city-life-motion-10s.mp4,补充.zip / 城市生活有意思动态.mp4,Optional: City Life 10-second H.264 video,Click-to-play only; do not autoplay; keep existing video code,1080,1440,7705.5
