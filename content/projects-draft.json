@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "good-boy",
+    "title": "GOOD BOY",
+    "category": "Interactive Installation",
+    "year": null,
+    "summary": "An interactive dog-leash installation in which visitors follow corrective instructions and become subject to the system they believe they are controlling.",
+    "technologies": [
+      "p5.js",
+      "Raspberry Pi Pico",
+      "Web Serial",
+      "Load cell / HX711",
+      "MediaPipe",
+      "Blender"
+    ],
+    "sceneObject": "scene/good-boy.png",
+    "cover": "projects/good-boy/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/good-boy/exhibition-photo.webp",
+      "projects/good-boy/dog-park-interface.webp",
+      "projects/good-boy/dog-character.webp"
+    ],
+    "externalLinks": []
+  },
+  {
+    "slug": "the-making-of-pets",
+    "title": "The Making of Pets",
+    "category": "3D Animation / Speculative Design",
+    "year": null,
+    "summary": "A fictional animal production system exploring how animal identities are designed, packaged and consumed.",
+    "technologies": [
+      "Cinema 4D",
+      "3D Modeling",
+      "Animation",
+      "Visual Storytelling"
+    ],
+    "sceneObject": "scene/making-of-pets.png",
+    "cover": "projects/the-making-of-pets/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/the-making-of-pets/world-map.webp",
+      "projects/the-making-of-pets/flying-animal.webp",
+      "projects/the-making-of-pets/horse-scene.webp",
+      "projects/the-making-of-pets/garden-scene.webp",
+      "projects/the-making-of-pets/visual-system.webp"
+    ],
+    "externalLinks": [
+      {
+        "label": "Full video",
+        "url": "https://youtu.be/6AQrL53uet8"
+      }
+    ]
+  },
+  {
+    "slug": "city-life-is-fun",
+    "title": "城市生活有意思",
+    "category": "Visual Identity / Creative Coding",
+    "year": null,
+    "summary": "A playful campaign visual system and interactive web experience around everyday urban life.",
+    "technologies": [
+      "Visual Design",
+      "Creative Coding",
+      "Vibe Coding"
+    ],
+    "sceneObject": "scene/city-life.png",
+    "cover": "projects/city-life-is-fun/cover-provisional.webp",
+    "previewVideo": "projects/city-life-is-fun/cat-preview.mp4",
+    "gallery": [
+      "projects/city-life-is-fun/campaign-background.webp"
+    ],
+    "externalLinks": [
+      {
+        "label": "Interactive website",
+        "url": "https://lixinisydney-cloud.github.io/city/"
+      }
+    ]
+  },
+  {
+    "slug": "anger-market",
+    "title": "Anger Market",
+    "category": "Visual Identity / Speculative Design",
+    "year": null,
+    "summary": "A speculative visual system for a fictional company that captures, classifies and commodifies social-media anger.",
+    "technologies": [
+      "Visual Identity",
+      "Graphic Design",
+      "Data Storytelling",
+      "Speculative Design"
+    ],
+    "sceneObject": "scene/anger-market.png",
+    "cover": "projects/anger-market/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/anger-market/graphic-system.webp",
+      "projects/anger-market/brand-guideline-01.webp",
+      "projects/anger-market/brand-guideline-02.webp",
+      "projects/anger-market/brand-guideline-03.webp",
+      "projects/anger-market/printed-material.webp"
+    ],
+    "externalLinks": []
+  },
+  {
+    "slug": "chroma-residences",
+    "title": "Chroma Residences: Living in Color",
+    "category": "Spatial / Installation Design",
+    "year": null,
+    "summary": "A modular architectural exploration of rental housing, class differences and the tension between shared and private space.",
+    "technologies": [
+      "Spatial Design",
+      "Arduino",
+      "Cinema 4D",
+      "Physical Model"
+    ],
+    "sceneObject": "scene/chroma-residences.png",
+    "cover": "projects/chroma-residences/cover.webp",
+    "previewVideo": null,
+    "gallery": [
+      "projects/chroma-residences/module-tower.webp",
+      "projects/chroma-residences/module-assembly.webp",
+      "projects/chroma-residences/installation-detail.webp",
+      "projects/chroma-residences/building-detail.webp"
+    ],
+    "externalLinks": [
+      {
+        "label": "Project video",
+        "url": "https://youtu.be/xEc4Kw6O3hY"
+      }
+    ]
+  },
+  {
+    "slug": "horse-motion-study",
+    "title": "From Static Image to Motion: Algorithmic Reinterpretations of a Horse",
+    "category": "Generative Art / Motion",
+    "year": null,
+    "summary": "An algorithmic motion study using contour-based drawing and computational reinterpretations of a running horse.",
+    "technologies": [
+      "py5",
+      "OpenCV",
+      "Generative Drawing",
+      "Animation"
+    ],
+    "sceneObject": null,
+    "cover": "projects/horse-motion-study/cover.webp",
+    "previewVideo": "projects/horse-motion-study/horse-preview.mp4",
+    "gallery": [
+      "projects/horse-motion-study/contour-study.webp",
+      "projects/horse-motion-study/motion-variation.webp"
+    ],
+    "externalLinks": []
+  }
+]

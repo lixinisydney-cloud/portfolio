@@ -1,0 +1,42 @@
+﻿original,new,pixels,bytes,notes
+png/good boy/image3.png,public/assets/scene/good-boy.png,796x597,143332,Original transparency preserved
+png/the making of pets/image5.png,public/assets/scene/making-of-pets.png,451x669,320833,Original transparency preserved
+png/anger market/image4_2.png,public/assets/scene/anger-market.png,330x330,165690,Original transparency preserved
+png/chroma residences/image5.png,public/assets/scene/chroma-residences.png,540x384,135743,Original transparency preserved
+png/city/xhs vibecoding/cat.png,public/assets/scene/city-life.png,472x474,173902,Near-white background removed; check edge quality
+png/good boy/image4.png,public/assets/scene/extra-good-boy-grass.png,523x169,91843,
+png/city/xhs vibecoding/Pigeon.png,public/assets/scene/extra-city-pigeon.png,441x406,95963,Near-white background removed; inspect before using
+png/city/xhs vibecoding/Potted plant.png,public/assets/scene/extra-city-planter.png,467x467,148331,Near-white background removed; inspect before using
+png/city/xhs vibecoding/camera.png,public/assets/scene/extra-city-camera.png,410x411,82971,Near-white background removed; inspect before using
+png/good boy/image1.png,public/assets/projects/good-boy/cover.webp,496x235,12342,
+png/good boy/image2.png,public/assets/projects/good-boy/dog-park-interface.webp,727x946,43256,
+png/good boy/image1.png,public/assets/projects/good-boy/exhibition-photo.webp,496x235,12342,
+png/good boy/image3.png,public/assets/projects/good-boy/dog-character.webp,796x597,29558,
+png/the making of pets/image1_1.png,public/assets/projects/the-making-of-pets/cover.webp,1600x900,62012,
+png/the making of pets/image3.png,public/assets/projects/the-making-of-pets/world-map.webp,1600x925,339002,
+png/the making of pets/image4_1.png,public/assets/projects/the-making-of-pets/flying-animal.webp,1011x569,32018,
+png/the making of pets/image5.png,public/assets/projects/the-making-of-pets/cow-character.webp,451x669,63210,
+png/the making of pets/image7_1.png,public/assets/projects/the-making-of-pets/horse-scene.webp,591x358,16624,
+png/the making of pets/image8_1.png,public/assets/projects/the-making-of-pets/garden-scene.webp,564x358,33208,
+png/the making of pets/image9_1.png,public/assets/projects/the-making-of-pets/visual-system.webp,1088x674,33054,
+png/city/xhs vibecoding/background.png,public/assets/projects/city-life-is-fun/cover-provisional.webp,1197x1600,55538,
+png/city/xhs vibecoding/background.png,public/assets/projects/city-life-is-fun/campaign-background.webp,1197x1600,55538,
+png/anger market/image1_2.png,public/assets/projects/anger-market/cover.webp,1600x1067,137128,
+png/anger market/image4_2.png,public/assets/projects/anger-market/graphic-system.webp,330x330,76506,
+png/anger market/book1.jpg,public/assets/projects/anger-market/brand-guideline-01.webp,1600x816,19732,
+png/anger market/book4.jpg,public/assets/projects/anger-market/brand-guideline-02.webp,1600x816,24668,
+png/anger market/book7.jpg,public/assets/projects/anger-market/brand-guideline-03.webp,1600x816,162652,
+png/anger market/image10.png,public/assets/projects/anger-market/printed-material.webp,218x146,3736,
+png/chroma residences/image1.png,public/assets/projects/chroma-residences/cover.webp,1600x900,42554,
+png/chroma residences/image5.png,public/assets/projects/chroma-residences/module-tower.webp,540x384,24576,
+png/chroma residences/image4.png,public/assets/projects/chroma-residences/module-assembly.webp,719x566,34400,
+png/chroma residences/image8.png,public/assets/projects/chroma-residences/installation-detail.webp,308x204,13674,
+png/chroma residences/image7.png,public/assets/projects/chroma-residences/building-detail.webp,299x447,21260,
+horse video frame at 15s,public/assets/projects/horse-motion-study/cover.webp,600x338,4106,Video still; not Stubborn Horse interactive game
+horse video frame at 7s,public/assets/projects/horse-motion-study/contour-study.webp,600x338,4538,Video still; not Stubborn Horse interactive game
+horse video frame at 61s,public/assets/projects/horse-motion-study/motion-variation.webp,600x338,5178,Video still; not Stubborn Horse interactive game
+From Static Image to Motion Algorithmic Reinterpretations of a Horse.mp4,public/assets/projects/horse-motion-study/horse-preview.mp4,H264 scaled 960,156174,Web-compatible short preview; original not included. Source appears black-backed (no alpha)
+cat video.mov,public/assets/projects/city-life-is-fun/cat-preview.mp4,H264 scaled 640,146739,Web-compatible short preview; original not included. Source appears black-backed (no alpha)
+pigeon video.mov,public/assets/projects/city-life-is-fun/pigeon-preview.mp4,H264 scaled 640,54203,Web-compatible short preview; original not included. Source appears black-backed (no alpha)
+camera video.mov,public/assets/projects/city-life-is-fun/camera-preview.mp4,H264 scaled 640,414632,Web-compatible short preview; original not included. Source appears black-backed (no alpha)
+potted video.mov,public/assets/projects/city-life-is-fun/planter-preview.mp4,H264 scaled 640,279977,Web-compatible short preview; original not included. Source appears black-backed (no alpha)
