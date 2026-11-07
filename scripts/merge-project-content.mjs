@@ -36,7 +36,7 @@ const merged = incoming.projects.map(copy => {
   if (old?.previewVideo && !videos.has(old.previewVideo)) videos.set(old.previewVideo, { kind: 'local', src: old.previewVideo, label: '作品片段' });
   const finalVideos = [...videos.values()].map(video => {
     const poster = video.kind === 'youtube' ? posterNames[video.videoId] : `${copy.slug}-${path.basename(video.src, '.mp4')}.webp`;
-    return { ...video, poster: video.poster || `posters/${poster}`, posterType: video.kind === 'local' ? 'video-frame' : poster.endsWith('.svg') ? 'text' : 'project-image', source };
+    return { ...video, poster: video.poster || `posters/${poster}`, posterType: video.kind === 'local' ? 'video-frame' : (video.poster || poster).endsWith('.svg') ? 'text' : 'project-image', source: video.source || source };
   });
   return {
     ...(old || { slug: copy.slug, cover: null, sceneObject: null, gallery: [], previewVideo: null }),
@@ -48,7 +48,7 @@ const merged = incoming.projects.map(copy => {
     // Review notes remain internal and are never passed to a visitor-facing block.
     responsibilityReviewNote: copy.responsibilityReviewNote,
     links: copy.links, videos: finalVideos, year: copy.year,
-    sources: { editorial: source, media: old?.sources ? old.sources.media : (old ? 'phase2-existing-assets' : null), review: 'planning/phase3a/02_project_copy_cn.md' },
+    sources: { editorial: source, media: old?.sources ? old.sources.media : (old ? 'phase2-existing-assets' : null), review: 'planning/phase3a/02_project_copy_cn.md', ...(old?.sources?.visualUpdate ? { visualUpdate: old.sources.visualUpdate } : {}) },
   };
 });
 // Unknown existing works must survive a later editorial import.

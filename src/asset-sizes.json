@@ -190,5 +190,121 @@
   "posters/dragon-dance-film.svg": [
     1600,
     900
+  ],
+  "world/water-ribbon.webp": [
+    694,
+    920
+  ],
+  "world/flying-rabbit.webp": [
+    850,
+    616
+  ],
+  "world/flying-deer.webp": [
+    1000,
+    572
+  ],
+  "world/ornament-oval-original.webp": [
+    367,
+    650
+  ],
+  "world/island-main.webp": [
+    1738,
+    1080
+  ],
+  "world/soft-sky-bg.webp": [
+    1650,
+    928
+  ],
+  "world/crystal-flora.webp": [
+    766,
+    920
+  ],
+  "world/water-splash.webp": [
+    800,
+    552
+  ],
+  "world/dream-flora.webp": [
+    850,
+    441
+  ],
+  "world/flying-cow.webp": [
+    610,
+    950
+  ],
+  "ui/button-visit.webp": [
+    204,
+    240
+  ],
+  "ui/ornament-corner-top-left.webp": [
+    444,
+    460
+  ],
+  "ui/button-capsule.webp": [
+    780,
+    289
+  ],
+  "ui/button-play.webp": [
+    207,
+    240
+  ],
+  "ui/ornament-corner-bottom-left.webp": [
+    452,
+    460
+  ],
+  "ui/ornament-corner-top-right.webp": [
+    443,
+    460
+  ],
+  "ui/icon-pearl-star.webp": [
+    240,
+    214
+  ],
+  "ui/ornament-corner-bottom-right.webp": [
+    453,
+    460
+  ],
+  "ui/cursors/cursor-arrow.png": [
+    48,
+    48
+  ],
+  "ui/cursors/cursor-sparkle.png": [
+    48,
+    48
+  ],
+  "ui/cursors/cursor-hover.png": [
+    48,
+    48
+  ],
+  "phase3b-references/uncertain-oracle-screenshot.webp": [
+    1250,
+    657
+  ],
+  "phase3b-references/horse-motion-frame-01.webp": [
+    900,
+    900
+  ],
+  "phase3b-references/horse-motion-frame-02.webp": [
+    900,
+    900
+  ],
+  "phase3b-references/horse-motion-frame-03.webp": [
+    900,
+    900
+  ],
+  "phase3b-references/stubborn-horse-screenshot.webp": [
+    1250,
+    703
+  ],
+  "phase3b-references/dragon-dance-screenshot.webp": [
+    1250,
+    603
+  ],
+  "phase3b-references/city-life-final-poster.webp": [
+    938,
+    1250
+  ],
+  "posters/city-life-main-motion.webp": [
+    720,
+    960
   ]
 }

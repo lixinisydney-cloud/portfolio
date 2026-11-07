@@ -10,7 +10,12 @@ test('slug migration is repeatable and retains all phase-2 image/local MP4 paths
   execFileSync(process.execPath, ['scripts/merge-project-content.mjs', '--check']);
   for (const old of baseline) {
     const project = projects.find(p => p.slug === old.slug);
-    for (const key of ['cover', 'sceneObject', 'gallery', 'previewVideo']) expect(project[key]).toEqual(old[key]);
+    for (const key of ['sceneObject', 'previewVideo']) expect(project[key]).toEqual(old[key]);
+    expect(project.gallery).toEqual(expect.arrayContaining(old.gallery));
+    if (old.slug === 'city-life-is-fun') {
+      expect(project.cover).toBe('phase3b-references/city-life-final-poster.webp');
+      expect(existsSync(`public/assets/${old.cover}`)).toBe(true);
+    } else expect(project.cover).toBe(old.cover);
     for (const video of old.videos || []) expect(project.videos.some(v => v.src === video.src)).toBe(true);
   }
   expect(projects.filter(p => p.collection === 'main')).toHaveLength(8);
@@ -24,7 +29,7 @@ test('slug migration is repeatable and retains all phase-2 image/local MP4 paths
   }
 });
 
-test('Chinese-first nine project entries, separate horse pages and truthful placeholders', async ({ page }) => {
+test('Chinese-first nine project entries, separate horse pages and reviewed project covers', async ({ page }) => {
   const missing = [];
   page.on('response', response => { if (response.status() >= 400 && response.url().includes('/assets/')) missing.push(response.url()); });
   await page.goto('/');
@@ -36,8 +41,9 @@ test('Chinese-first nine project entries, separate horse pages and truthful plac
   await expect(page.locator('#contact-links a').first()).toHaveAttribute('href', `mailto:${source.site.contact.email}`);
   for (const slug of ['stubborn-horse', 'dragon-dance', 'the-uncertain-oracle']) {
     const card = page.locator(`#work-grid [data-project="${slug}"]`);
-    await expect(card.locator('img')).toHaveCount(0);
-    await expect(card.locator('.text-cover')).toBeVisible();
+    await expect(card.locator('img')).toHaveCount(1);
+    await card.scrollIntoViewIfNeeded();
+    await expect.poll(() => card.locator('img').evaluate(i => i.complete && i.naturalWidth > 0)).toBe(true);
     await page.goto(`/#/projects/${slug}`);
     await expect(page.locator('.responsibility')).toHaveCount(slug === 'stubborn-horse' ? 1 : 0);
     if (slug === 'the-uncertain-oracle') await expect(page.locator('.demo-hint').first()).toContainText('摄像头权限');

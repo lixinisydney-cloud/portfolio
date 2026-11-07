@@ -4,20 +4,20 @@ test('desktop projects, mouse parallax, keyboard dialog and navigation', async (
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('/');
-  await expect(page.locator('.world-object')).toHaveCount(5);
+  await expect(page.locator('.world-object')).toHaveCount(4);
   await expect(page.locator('.work-card')).toHaveCount(9);
   await page.mouse.move(200, 200);
   await page.waitForTimeout(500);
-  const before = await page.locator('.object-good-boy').evaluate(el => el.style.transform);
+  const before = await page.locator('.world-island').evaluate(el => el.style.transform);
   await page.mouse.move(1200, 700);
   await page.waitForTimeout(500);
-  expect(await page.locator('.object-good-boy').evaluate(el => el.style.transform)).not.toBe(before);
+  expect(await page.locator('.world-island').evaluate(el => el.style.transform)).not.toBe(before);
   const first = page.locator('.world-object').first();
   await first.focus();
   await expect(first.locator('.object-label')).toHaveCSS('opacity', '1');
   await page.keyboard.press('Enter');
   await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.locator('#preview-title')).toHaveText('GOOD BOY');
+  await expect(page.locator('#preview-title')).toHaveText('制作宠物');
   await page.keyboard.press('Escape');
   await expect(first).toBeFocused();
   for (const card of await page.locator('.work-card').all()) {
@@ -41,12 +41,12 @@ test('touch layout exposes every title and opens preview without hover', async (
     await expect(page.getByRole('dialog')).toBeVisible();
     await page.getByRole('button', { name: '关闭作品预览' }).tap();
   }
-  expect(await page.locator('.object-good-boy').evaluate(el => el.style.transform)).toBe('');
+  expect(await page.locator('.world-island').evaluate(el => el.style.transform)).toBe('');
   await context.close();
 });
 test('reduced motion disables parallax', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await page.mouse.move(900, 500);
-  expect(await page.locator('.object-good-boy').evaluate(el => el.style.transform)).toBe('');
+  expect(await page.locator('.world-island').evaluate(el => el.style.transform)).toBe('');
 });

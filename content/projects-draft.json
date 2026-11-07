@@ -169,9 +169,11 @@
   },
   {
     "slug": "stubborn-horse",
-    "cover": null,
+    "cover": "phase3b-references/stubborn-horse-screenshot.webp",
     "sceneObject": null,
-    "gallery": [],
+    "gallery": [
+      "phase3b-references/stubborn-horse-screenshot.webp"
+    ],
     "previewVideo": null,
     "title": "Stubborn Horse",
     "titleCn": "固执的马",
@@ -208,8 +210,8 @@
         "label": "玩法演示",
         "url": "https://www.youtube.com/watch?v=itmUY-1dSg8",
         "videoId": "itmUY-1dSg8",
-        "poster": "posters/stubborn-horse-film.svg",
-        "posterType": "text",
+        "poster": "phase3b-references/stubborn-horse-screenshot.webp",
+        "posterType": "project-image",
         "source": "planning/phase3a/03_project_content_v3.json"
       }
     ],
@@ -217,7 +219,8 @@
     "sources": {
       "editorial": "planning/phase3a/03_project_content_v3.json",
       "media": null,
-      "review": "planning/phase3a/02_project_copy_cn.md"
+      "review": "planning/phase3a/02_project_copy_cn.md",
+      "visualUpdate": "planning/phase3b/ASSET_MANIFEST.csv"
     }
   },
   {
@@ -238,7 +241,10 @@
     "previewVideo": "projects/horse-motion-study/horse-preview.mp4",
     "gallery": [
       "projects/horse-motion-study/contour-study.webp",
-      "projects/horse-motion-study/motion-variation.webp"
+      "projects/horse-motion-study/motion-variation.webp",
+      "phase3b-references/horse-motion-frame-01.webp",
+      "phase3b-references/horse-motion-frame-02.webp",
+      "phase3b-references/horse-motion-frame-03.webp"
     ],
     "externalLinks": [],
     "videos": [
@@ -268,9 +274,11 @@
   },
   {
     "slug": "dragon-dance",
-    "cover": null,
+    "cover": "phase3b-references/dragon-dance-screenshot.webp",
     "sceneObject": null,
-    "gallery": [],
+    "gallery": [
+      "phase3b-references/dragon-dance-screenshot.webp"
+    ],
     "previewVideo": null,
     "title": "Dragon Dance",
     "titleCn": "舞龙：多人在线互动",
@@ -309,8 +317,8 @@
         "label": "多人互动演示",
         "url": "https://www.youtube.com/watch?v=8aRfY_WLNl0",
         "videoId": "8aRfY_WLNl0",
-        "poster": "posters/dragon-dance-film.svg",
-        "posterType": "text",
+        "poster": "phase3b-references/dragon-dance-screenshot.webp",
+        "posterType": "project-image",
         "source": "planning/phase3a/03_project_content_v3.json"
       }
     ],
@@ -318,14 +326,17 @@
     "sources": {
       "editorial": "planning/phase3a/03_project_content_v3.json",
       "media": null,
-      "review": "planning/phase3a/02_project_copy_cn.md"
+      "review": "planning/phase3a/02_project_copy_cn.md",
+      "visualUpdate": "planning/phase3b/ASSET_MANIFEST.csv"
     }
   },
   {
     "slug": "the-uncertain-oracle",
-    "cover": null,
+    "cover": "phase3b-references/uncertain-oracle-screenshot.webp",
     "sceneObject": null,
-    "gallery": [],
+    "gallery": [
+      "phase3b-references/uncertain-oracle-screenshot.webp"
+    ],
     "previewVideo": null,
     "title": "The Uncertain Oracle",
     "titleCn": "不确定的神谕",
@@ -363,8 +374,8 @@
         "label": "手势互动演示",
         "url": "https://www.youtube.com/watch?v=1chPTqrWrQw",
         "videoId": "1chPTqrWrQw",
-        "poster": "posters/oracle-film.svg",
-        "posterType": "text",
+        "poster": "phase3b-references/uncertain-oracle-screenshot.webp",
+        "posterType": "project-image",
         "source": "planning/phase3a/03_project_content_v3.json"
       }
     ],
@@ -372,7 +383,8 @@
     "sources": {
       "editorial": "planning/phase3a/03_project_content_v3.json",
       "media": null,
-      "review": "planning/phase3a/02_project_copy_cn.md"
+      "review": "planning/phase3a/02_project_copy_cn.md",
+      "visualUpdate": "planning/phase3b/ASSET_MANIFEST.csv"
     }
   },
   {
@@ -389,9 +401,10 @@
       "Motion Assets"
     ],
     "sceneObject": "scene/city-life.png",
-    "cover": "projects/city-life-is-fun/cover-provisional.webp",
+    "cover": "phase3b-references/city-life-final-poster.webp",
     "previewVideo": "projects/city-life-is-fun/cat-preview.mp4",
     "gallery": [
+      "phase3b-references/city-life-final-poster.webp",
       "projects/city-life-is-fun/campaign-background.webp"
     ],
     "externalLinks": [
@@ -433,6 +446,15 @@
         "poster": "posters/city-life-is-fun-planter-preview.webp",
         "posterType": "video-frame",
         "source": "planning/phase3a/03_project_content_v3.json"
+      },
+      {
+        "kind": "local",
+        "label": "城市主视觉动态",
+        "src": "phase3b-references/city-life-motion-10s.mp4",
+        "poster": "posters/city-life-main-motion.webp",
+        "posterType": "video-frame",
+        "aspectRatio": "3/4",
+        "source": "planning/phase3b/ASSET_MANIFEST.csv"
       }
     ],
     "titleCn": "城市生活有意思",
@@ -458,7 +480,8 @@
     "sources": {
       "editorial": "planning/phase3a/03_project_content_v3.json",
       "media": "phase2-existing-assets",
-      "review": "planning/phase3a/02_project_copy_cn.md"
+      "review": "planning/phase3a/02_project_copy_cn.md",
+      "visualUpdate": "planning/phase3b/ASSET_MANIFEST.csv"
     }
   },
   {
