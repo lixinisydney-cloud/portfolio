@@ -68,3 +68,17 @@
 - `docs/screenshots/phase3b-home-1440x900.png` 与 `phase3b-home-390x844.png` 为真实浏览器截图，非效果图。截图命令：启动 Vite 后运行 `node scripts/capture-homepage.mjs`。
 
 尚可后续补充：GOOD BOY 高清展陈与互动影片、YouTube 项目的国内可访问备选视频，以及 Dragon/Oracle 经确认的团队个人职责。当前不会公开猜测分工。
+
+## PR #3：CI 视频加载修复
+
+涉及文件为 `phase3b-references/city-life-motion-10s.mp4`。与其他五段 MP4 不同，上传原文件的 `moov` 索引位于偏移 7,880,478（约 7.88MB，`mdat` 之后）。编码是 H.264 Main / yuv420p + AAC LC，并非不兼容编码。原静态构建测试服务器仅用 readFile 返回 200，没有 Content-Length、Accept-Ranges 或 206/Content-Range，无法像 Vite/真实静态托管那样读取片尾索引。CI 资源/传输时序下，浏览器可能一直停在 HAVE_NOTHING，未在原 5 秒轮询内得到可解码帧。
+
+播放器仍按点击创建 video，赋 src 后调用 play()；该调用会启动加载，不需要额外在首页预加载视频，也没有修改交互设计。
+
+修复措施：
+- `ffmpeg -map 0 -c copy -movflags +faststart` 无损重封装同一路径文件，让索引先于媒体数据。音轨/视频轨的 encoded-stream SHA256 重封装前后完全一致，没有重新编码、降质或删音轨。
+- 构建测试服务器改为流式 HTTP 服务，支持 Content-Length、Accept-Ranges、206、Content-Range、HEAD、suffix/open-ended Range 和 416。测试直接核对分段响应体等于原文件字节。
+- 保留 readyState >= 2 断言和原等待时间，额外要求 currentTime > 0，证明真的开始播放；每段影片添加包含 slug/路径的 test.step 和错误诊断，后续 CI 可直接定位片段。
+- 增加 fast-start 布局回归断言，防止新增大文件再次把索引留在片尾。
+
+本地 `npm run build` 与 17 项浏览器测试通过。GitHub Actions 结果以修复提交的实际检查记录为准；该 PR 不自行合并或部署。
