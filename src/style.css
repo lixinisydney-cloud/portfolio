@@ -5,3 +5,37 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.world-object:hover,.world-object:focus-visible{scale:1}.work-card:hover .card-object{transform:none}}
 .arrow-icon{width:1em;height:1em;vertical-align:-.12em;flex-shrink:0}.star-icon{width:1em;height:1em;vertical-align:-.1em}.mark-star{display:inline-flex}.title-star{width:1em;height:1em}.title-star .star-icon{display:block}.footer-bottom .star-icon{color:#617829}.object-label{color:#292923}.world-object:hover .object-label,.world-object:focus-visible .object-label{color:var(--paper)}
 @media(max-width:800px){.world-object:hover .object-label,.world-object:focus-visible .object-label{color:#292923}}
+
+/* Real artwork stays on its own transform layer, inside Parallax's wrapper. */
+[hidden]{display:none!important}
+.scene-image{width:100%;height:100%;object-fit:contain;display:block}
+.object-art{transform:perspective(800px) rotateY(-6deg);aspect-ratio:var(--object-ratio,1)}
+.object-good-boy .world-object{left:2%;top:8%;width:clamp(175px,22vw,320px);rotate:-7deg;--object-ratio:796/597}
+.object-the-making-of-pets .world-object{right:5%;top:3%;width:clamp(120px,12vw,185px);rotate:7deg;--object-ratio:451/669}
+.object-city-life-is-fun .world-object{right:2%;top:48%;width:clamp(165px,19vw,280px);rotate:8deg;--object-ratio:472/474}
+.object-anger-market .world-object{left:6%;top:57%;width:clamp(140px,14vw,205px);rotate:7deg}
+.object-chroma-residences .world-object{left:43%;top:72%;width:clamp(160px,18vw,250px);rotate:-6deg;--object-ratio:540/384}
+.card-object{inset:0;width:100%;height:100%;filter:none;padding:32px}
+.card-object img{width:100%;height:100%;object-fit:contain;display:block}
+.work-card:hover .card-object,.work-card:focus-visible .card-object{transform:scale(1.035)}
+.card-caption strong{line-height:1.25}.card-caption{min-height:85px}
+.preview-art{padding:25px}.preview-art>img{width:100%;height:100%;object-fit:contain;min-height:0}
+.project-link{display:inline-flex;align-items:center;gap:14px;border-bottom:1px solid currentColor;padding:10px 0;font-size:14px}
+.project-link:hover{color:#5147a6}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.media-fallback{display:grid;place-items:center;width:100%;min-height:160px;height:100%;font-size:13px;background:#e2ded4;color:#57574d}
+.project-detail{padding-top:45px}.back-to-work{font-size:13px;display:inline-block;margin-bottom:50px}
+.detail-heading h1{font-size:clamp(38px,6vw,88px);letter-spacing:-.055em;line-height:1.05;max-width:1100px;margin:22px 0 45px;overflow-wrap:anywhere}
+.detail-hero{margin:0;background:var(--card-color);display:grid;place-items:center;min-height:260px;padding:35px}
+.detail-hero img{max-width:100%;max-height:650px;width:auto;height:auto;object-fit:contain}
+.asset-note{font-size:12px;line-height:1.6;color:#66665b;max-width:850px;margin:18px 0}
+.detail-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:9%;margin:65px 0 90px}.detail-intro p{font-size:clamp(19px,2vw,27px);line-height:1.55;margin-top:18px;letter-spacing:-.3px}.detail-intro h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:400}
+.tech-tags{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.tech-tags li{padding:8px 13px;border:1px solid #bbbbae;border-radius:22px;font-size:12px}
+.external-links{display:flex;flex-wrap:wrap;gap:20px}
+.detail-gallery>h2,.detail-videos>h2{font-size:32px;font-weight:500;letter-spacing:-1px;margin:0 0 30px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px 25px}.gallery-grid figure,.video-grid figure{margin:0;min-width:0}.gallery-grid img{display:block;width:auto;max-width:100%;height:auto;max-height:650px;margin:auto;object-fit:contain;background:#eae7df}.gallery-grid figure{display:flex;flex-direction:column;justify-content:center;background:#eae7df;padding:24px}.gallery-grid figcaption,.video-grid figcaption{font-size:11px;line-height:1.6;color:#66665b;margin-top:18px}.gallery-grid figcaption{margin-top:auto;padding-top:20px}
+.detail-videos{margin:80px 0}.detail-videos>p{font-size:13px}.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}.video-frame{background:#080808;position:relative;aspect-ratio:16/10;display:grid;place-items:center}.video-frame video{width:100%;height:100%;object-fit:contain;position:absolute}.load-video{position:relative;z-index:1;border:1px solid #fff8;border-radius:30px;padding:15px 22px;background:#222;color:white;font-size:13px}.load-video:hover{background:#444}.video-grid figcaption a{text-decoration:underline}.video-status{font-size:12px;line-height:1.6}.detail-gallery{margin-bottom:70px}
+@media(min-width:801px) and (max-width:1100px){.hero-intro{top:25%}.object-good-boy .world-object{top:6%;left:0}.object-the-making-of-pets .world-object{right:4%;top:2%}.object-anger-market .world-object{top:62%;left:3%}.object-city-life-is-fun .world-object{top:56%;right:0}.object-chroma-residences .world-object{top:78%;left:41%}}
+@media(max-width:800px){.object-art{aspect-ratio:1;transform:none}#scene{gap:28px 16px}.world-object{padding-bottom:45px}.object-label{white-space:normal;text-align:center;justify-content:center;width:100%;max-width:100%;font-size:11px;line-height:1.4;bottom:0;min-height:36px;align-items:center}.object-chroma-residences{grid-column:1 / -1;width:60%!important;justify-self:center}.object-label .arrow-icon{width:12px}.card-object{padding:28px 18px}.card-caption strong{font-size:18px}.project-detail{padding-top:30px}.back-to-work{margin-bottom:35px}.detail-heading h1{font-size:40px;letter-spacing:-1.5px}.detail-hero{padding:18px;min-height:180px}.detail-intro{grid-template-columns:1fr;gap:25px;margin:45px 0 55px}.detail-intro p{font-size:21px}.gallery-grid,.video-grid{grid-template-columns:1fr;gap:24px}.gallery-grid figure{padding:18px}.detail-gallery>h2,.detail-videos>h2{font-size:28px}.detail-videos{margin:55px 0}}
+@media(prefers-reduced-motion:reduce){.work-card:hover .card-object,.work-card:focus-visible .card-object{transform:none}}
+#detail-title:focus{outline:none}.gallery-grid{align-items:start}

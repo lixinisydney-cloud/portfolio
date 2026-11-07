@@ -21,7 +21,8 @@
       "projects/good-boy/dog-park-interface.webp",
       "projects/good-boy/dog-character.webp"
     ],
-    "externalLinks": []
+    "externalLinks": [],
+    "assetNote": "The exhibition photograph is currently low resolution. Higher-resolution documentation will replace it when available."
   },
   {
     "slug": "the-making-of-pets",
@@ -43,7 +44,8 @@
       "projects/the-making-of-pets/flying-animal.webp",
       "projects/the-making-of-pets/horse-scene.webp",
       "projects/the-making-of-pets/garden-scene.webp",
-      "projects/the-making-of-pets/visual-system.webp"
+      "projects/the-making-of-pets/visual-system.webp",
+      "projects/the-making-of-pets/cow-character.webp"
     ],
     "externalLinks": [
       {
@@ -73,6 +75,25 @@
       {
         "label": "Interactive website",
         "url": "https://lixinisydney-cloud.github.io/city/"
+      }
+    ],
+    "assetNote": "Provisional cover: campaign background, pending the finished main visual. Video previews have a black background; they are not transparent overlays.",
+    "videos": [
+      {
+        "src": "projects/city-life-is-fun/cat-preview.mp4",
+        "label": "Cat motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/pigeon-preview.mp4",
+        "label": "Pigeon motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/camera-preview.mp4",
+        "label": "Camera motion preview"
+      },
+      {
+        "src": "projects/city-life-is-fun/planter-preview.mp4",
+        "label": "Planter motion preview"
       }
     ]
   },
@@ -147,6 +168,12 @@
       "projects/horse-motion-study/contour-study.webp",
       "projects/horse-motion-study/motion-variation.webp"
     ],
-    "externalLinks": []
+    "externalLinks": [],
+    "videos": [
+      {
+        "src": "projects/horse-motion-study/horse-preview.mp4",
+        "label": "Horse motion preview"
+      }
+    ]
   }
 ]

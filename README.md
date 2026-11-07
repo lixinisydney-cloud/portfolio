@@ -1,49 +1,51 @@
 # SYDNEY'S WORLD
 
-A lightweight 2.5D portfolio MVP for a Creative Technologist / Interactive Designer.
-All five projects and their images are original placeholder studies, not real client work.
+Vite + vanilla JavaScript + Parallax.js portfolio. Five real PNG scene objects, six selected works, accessible previews and shared hash-routed project details. No React, Astro, GSAP or Three.js.
 
-## Develop
+## Development
 
-Requires Node.js 20.19+ or 22.12+ (validated with Node 24) and npm.
+Node.js 20.19+ or 22.12+ and npm (validated with Node 24).
 
 ```sh
 npm ci
 npm run dev
 npm run build
+npm test
 npm run preview
 ```
 
-In a cloud machine with a read-only home directory, use `npm ci --cache /tmp/sydney-npm-cache`.
+For a read-only home directory, use `npm ci --cache /tmp/sydney-npm-cache`.
 Use the existing checkout; a separate Git worktree is unnecessary.
 
-## Structure and replacement assets
+Tests use system Chromium at `/usr/bin/chromium`. On another machine, install a Playwright browser and remove `executablePath` from `playwright.config.js` or use your installed Chromium path. The production-path test builds the site and serves it under `/portfolio/` without an SPA fallback.
 
-- `index.html`: navigation, hero typography, About, Contact and native preview dialog.
-- `src/projects.js`: the five project names, categories, descriptions, depth values and image layer paths.
-- `src/main.js`: renders both project entry points, manages dialog focus and enables desktop mouse parallax.
-- `src/style.css`: composition, independent object hover transforms, responsive/static touch layout and reduced motion.
-- `public/objects/<id>-back.png` and `<id>-front.png`: transparent 600 × 600 PNGs sharing the same canvas/alignment. Replace these files or change `layers` in the project data. Do not add essential text to images.
-- `scripts/placeholders.py`: optional placeholder regeneration using Pillow; not required for installation or build.
+## Content and code
 
-Project depth controls Parallax.js wrapper transforms. The child `.world-object` owns hover/focus scaling; `.object-art` owns the CSS perspective transform. Never attach GSAP transforms to the Parallax wrappers. No GSAP, Three.js, external fonts or live 3D models are used.
+- `content/projects-draft.json`: **single editorial source** for titles, slugs, categories, summaries, technologies, media, notes and external links. Years remain null. `videos` supplies locally hosted clips; external videos stay as real links.
+- `src/projects.js`: imports that JSON and adds only presentation colors/depths and shared asset/link helpers.
+- `src/main.js`: scene, selected works, preview dialog, reusable details and hash router.
+- `src/style.css`: existing visual language, artwork-specific proportions and responsive composition.
+- `src/asset-sizes.json`: intrinsic image sizes for stable layout. If replacing images, update the matching dimensions.
+- `public/assets/scene/`: the five scene PNGs and four optional, unused decorations.
+- `public/assets/projects/`: supplied WebP covers/galleries and H.264 MP4 clips, already optimized for the web.
+- `docs/asset-integration.md`: usage audit, known limitations and missing-material requests.
 
-At 800px and below, or with a coarse pointer, parallax is disabled. Mobile titles are always visible and buttons open previews with a tap. Reduced motion disables parallax, animation and smooth scrolling. Native dialog provides Escape, focus containment, a close button and focus return.
+Parallax owns `.parallax-layer` transforms. Hover/focus scaling belongs to `.world-object`; perspective belongs to `.object-art`. Keep future GSAP transform animations off Parallax wrappers. Images use `object-fit: contain` to avoid distortion or cropping.
+
+Mouse parallax is enabled only for fine-pointer desktop devices above 800px, with reduced motion off. Mobile uses a static grid with always-visible titles. The native dialog supports Escape, focus containment, close and focus return. Every preview includes a View Project link. The horse motion study appears only in Selected Works and is independent of Stubborn Horse.
+
+## GitHub Pages
+
+`vite.config.js` uses `base: './'`: the same build can be hosted at the root or a repository prefix such as `/portfolio/`. Runtime assets are prefixed with `import.meta.env.BASE_URL`; there are no hardcoded `/assets/...` URLs.
+
+Details use `#/projects/<slug>` (e.g. `/portfolio/#/projects/good-boy`). Hash routes always request the real `index.html`, so refresh and browser back/forward work without a server rewrite or `404.html` trick. An unknown project shows a return link. Deploy the generated **dist directory**, not the source directory. No automatic deployment workflow has been added.
+
+Galleries are lazy loaded. Videos have `preload="none"` and receive no `src` until Play is pressed; navigation stops and unloads them. Black-backed city videos remain inside black players, never as transparent scene overlays. Broken images and failed playback show a readable fallback. External links are taken from the supplied data; no third-party API or embed is loaded automatically.
 
 ## Validation
 
-```sh
-npm test
-```
-
-Tests use Playwright and system Chromium at `/usr/bin/chromium`. On another machine, install Chromium through Playwright and remove `executablePath` in `playwright.config.js` or point it to the local browser. Tests cover real parallax movement, all work previews, keyboard focus return, touch access, navigation, overflow and reduced motion.
-
-## Next content
-
-For each of five projects: title, category, year, short summary, role/tools, a cover image, two aligned transparent PNG layers (1200px recommended for final artwork), preview images/video with a poster, and optional external project link. Also provide approved About text, contact email and social URLs. Contact intentionally remains an honest placeholder until supplied.
+`npm run build` and `npm test` cover mouse parallax, six previews, keyboard/touch, reduced motion, all details and galleries, hash refresh/history, mobile overflow, missing-media fallbacks, on-demand video loading and the built site under `/portfolio/`. Production tests request all 37 used asset files and decode each of the five MP4s in Chromium.
 
 ## License
 
-The starting repository supplied no README or license, and contained only `.gitattributes`. No prior author content or animations existed to preserve. A project license has not been assumed or added. Parallax.js is MIT licensed; its license is included in `public/THIRD_PARTY_NOTICES.txt` and copied to the production output.
-
-Reference URLs were provided for direction; this environment returned HTTP 403 for all three during implementation, so their live visual behavior could not be inspected.
+The initial repository contained only `.gitattributes` and no license; no project license has been assumed. Parallax.js is MIT licensed, with its notice in `public/THIRD_PARTY_NOTICES.txt`, copied into the build. Supplied project assets retain their original ownership.
