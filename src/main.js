@@ -1,8 +1,11 @@
 import Parallax from 'parallax-js';
 import './style.css';
-import { projects, sceneProjects, mainProjects, experiments, site, projectTitle, projectHref } from './projects.js';
+import './world.css';
+import { projects, mainProjects, experiments, site, assetUrl, projectTitle, projectHref } from './projects.js';
 import { escape, image, largeMedia, arrow } from './components/media.js';
 import { projectCtas, externalLink } from './components/cta.js';
+import assetSizes from './asset-sizes.json';
+import { mountWorld } from './components/world.js';
 import { videoPoster, bindVideoPosters, stopMedia } from './components/video-poster.js';
 
 const scene = document.querySelector('#scene');
@@ -10,6 +13,12 @@ const grid = document.querySelector('#work-grid');
 const dialog = document.querySelector('#project-dialog');
 const homeView = document.querySelector('#home-view');
 const detail = document.querySelector('#project-detail');
+for (const [name, path] of Object.entries({
+  '--pearl-button': 'ui/button-capsule.webp',
+  '--play-decoration': 'ui/button-play.webp',
+  '--corner-decoration': 'ui/ornament-corner-top-right.webp',
+})) document.documentElement.style.setProperty(name, `url("${new URL(assetUrl(path), document.baseURI).href}")`);
+
 const englishTitle = project => project.title !== projectTitle(project) ? `<span class="project-title-en" lang="en">${escape(project.title)}</span>` : '';
 
 // Chinese-first site copy is maintained with the project content, not duplicated.
@@ -29,20 +38,13 @@ document.addEventListener('error', event => {
   event.target.replaceWith(fallback);
 }, true);
 
-for (const project of sceneProjects) {
-  const layer = document.createElement('div');
-  layer.className = `parallax-layer object-${project.slug}`;
-  layer.dataset.depth = project.depth;
-  // Parallax owns this wrapper. The inner button owns hover/focus transforms.
-  layer.innerHTML = `<button class="world-object" data-project="${project.slug}" aria-haspopup="dialog" aria-label="查看作品：${escape(projectTitle(project))}"><span class="object-art">${image(project.sceneObject, '', { className: 'scene-image' })}</span><span class="object-label"><span>${escape(projectTitle(project))}</span>${arrow}</span></button>`;
-  scene.append(layer);
-}
+mountWorld(scene, projects);
 function renderCard(project, index, target) {
   const card = document.createElement('button');
   card.className = 'work-card';
   card.dataset.project = project.slug;
   card.setAttribute('aria-haspopup', 'dialog');
-  card.innerHTML = `<span class="card-art" style="--card-color:${project.color}"><span class="card-number">${String(index + 1).padStart(2, '0')} / ${project.collection === 'experiment' ? '独立实验' : '精选作品'}</span><span class="card-object">${image(project.cover, project.cover ? '' : projectTitle(project), { lazy: true })}</span><span class="card-open" aria-hidden="true">${arrow}</span></span><span class="card-caption"><span><strong>${escape(projectTitle(project))}</strong>${englishTitle(project)}<span class="card-category">${escape(project.category)}</span></span>${project.year ? `<span class="card-year">${escape(project.year)}</span>` : ''}</span>`;
+  card.innerHTML = `<span class="card-art" style="--card-color:${project.color};--cover-ratio:${assetSizes[project.cover] ? assetSizes[project.cover].join('/') : '16/9'}"><span class="card-number">${String(index + 1).padStart(2, '0')} / ${project.collection === 'experiment' ? '独立实验' : '精选作品'}</span><span class="card-object">${image(project.cover, project.cover ? '' : projectTitle(project), { lazy: true })}</span><span class="card-open" aria-hidden="true">${arrow}</span></span><span class="card-caption"><span><strong>${escape(projectTitle(project))}</strong>${englishTitle(project)}<span class="card-category">${escape(project.category)}</span></span>${project.year ? `<span class="card-year">${escape(project.year)}</span>` : ''}</span>`;
   target.append(card);
 }
 mainProjects.forEach((project, index) => renderCard(project, index, grid));
@@ -70,7 +72,12 @@ dialog.addEventListener('click', event => {
   const r = dialog.getBoundingClientRect();
   if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
 });
-dialog.addEventListener('close', () => { if (!homeView.hidden) opener?.focus({ preventScroll: true }); });
+dialog.addEventListener('close', () => {
+  // Native dialog normally restores focus. Do not steal it back if a user has
+  // already moved to another control before the queued close event fires.
+  const active = document.activeElement;
+  if (!homeView.hidden && (active === document.body || dialog.contains(active))) opener?.focus({ preventScroll: true });
+});
 document.querySelector('#view-project').addEventListener('click', () => {
   returnProject = opener?.dataset.project;
   dialog.close();
@@ -83,7 +90,7 @@ function configureMotion() {
   parallax?.destroy();
   parallax = undefined;
   if (!homeView.hidden && desktop.matches && !reduced.matches) {
-    parallax = new Parallax(scene, { relativeInput: true, hoverOnly: true, pointerEvents: true, frictionX: 0.055, frictionY: 0.055, scalarX: 7, scalarY: 7, calibrateX: false, calibrateY: false });
+    parallax = new Parallax(scene, { relativeInput: true, hoverOnly: true, pointerEvents: true, frictionX: 0.055, frictionY: 0.055, scalarX: 5, scalarY: 4, calibrateX: false, calibrateY: false });
     parallax.disable();
     parallax.orientationSupport = false;
     parallax.motionSupport = false;
@@ -98,7 +105,7 @@ function renderDetail(project) {
   const next = mainProjects[(mainProjects.findIndex(p => p.slug === project.slug) + 1) % mainProjects.length];
   detail.innerHTML = `<a class="back-to-work" href="#work">← 返回作品</a>
     <header class="detail-heading"><span class="eyebrow">${escape(project.category)}</span><h1 id="detail-title" tabindex="-1">${escape(title)}</h1>${englishTitle(project)}<p class="detail-summary">${escape(project.summary)}</p>${project.year ? `<p>${escape(project.year)}</p>` : ''}${projectCtas(project)}</header>
-    <figure class="detail-hero" style="--card-color:${project.color}">${image(project.cover, `${title} · 作品主视觉`)}</figure>
+    <figure class="detail-hero" style="--card-color:${project.color};--cover-ratio:${assetSizes[project.cover] ? assetSizes[project.cover].join('/') : '16/9'}">${image(project.cover, `${title} · 作品主视觉`)}</figure>
     <div class="detail-intro"><div><span class="eyebrow">设计概念</span><p>${escape(project.detailZh || project.summary)}</p>${project.responsibility && !project.isTeam ? `<section class="responsibility"><h2>我的工作</h2><p>${escape(project.responsibility)}</p></section>` : ''}</div><div><h2>技术与工具</h2><ul class="tech-tags">${project.technologies.map(tech => `<li>${escape(tech)}</li>`).join('')}</ul></div></div>
     ${project.gallery.length ? `<section class="detail-gallery" aria-labelledby="gallery-title"><h2 id="gallery-title">作品画面</h2><div class="gallery-grid">${project.gallery.map((path, i) => largeMedia(path, `${title} · 作品画面 ${i + 1}`, { caption: `${String(i + 1).padStart(2, '0')} / ${title}` })).join('')}</div></section>` : ''}
     ${project.videos.length ? `<section class="detail-videos" id="project-videos" aria-labelledby="video-title"><h2 id="video-title" tabindex="-1">影片</h2><p>点击封面播放影片</p><div class="video-grid">${project.videos.map(videoPoster).join('')}</div></section>` : ''}

@@ -1,7 +1,7 @@
 import draft from '../content/projects-draft.json';
 import siteContent from '../content/site.json';
 
-// Presentation only. The scene order/positions stay unchanged in phase A.
+// Presentation metadata retained from phase A; the island composition is defined in components/world.js.
 const presentation = {
   'good-boy': { color: '#e7e3f2', depth: 0.35 },
   'the-making-of-pets': { color: '#e6e9f3', depth: 0.22 },

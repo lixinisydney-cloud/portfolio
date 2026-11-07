@@ -1,6 +1,6 @@
 # SYDNEY'S WORLD
 
-Vite + vanilla JavaScript + Parallax.js portfolio. Five unchanged PNG scene objects, eight Chinese-first main works plus one separate algorithmic experiment, accessible previews and shared hash-routed details. No React, Astro, GSAP or Three.js.
+Vite + vanilla JavaScript + Parallax.js portfolio. An original C4D island with four accessible project destinations, eight Chinese-first main works plus one separate algorithmic experiment, previews and hash-routed details. No React, Astro, GSAP or Three.js.
 
 ## Development
 
@@ -26,7 +26,7 @@ Local tests use system Chromium at `/usr/bin/chromium`; CI uses the Chromium ins
 - `src/main.js`: scene, selected works, preview dialog, reusable details and hash router.
 - `src/style.css`: existing visual language, artwork-specific proportions and responsive composition.
 - `src/asset-sizes.json`: intrinsic image sizes for stable layout. If replacing images, update the matching dimensions.
-- `public/assets/scene/`: the five scene PNGs and four optional, unused decorations.
+- `public/assets/scene/`: the original scene PNGs retained as project/source media; the homepage now uses `public/assets/world/island-main.webp`.
 - `public/assets/projects/`: supplied WebP covers/galleries and H.264 MP4 clips, already optimized for the web.
 - `docs/asset-integration.md`: usage audit, known limitations and missing-material requests.
 
@@ -66,3 +66,9 @@ The initial repository contained only `.gitattributes` and no license; no projec
 ## Phase A content foundation
 
 See [migration, component, poster provenance and missing-media guide](docs/phase3a-content-foundation.md). Run `node scripts/merge-project-content.mjs` to merge verified editorial content by slug, or use `--check` to verify repeatability without writing. Existing media paths are preserved. Site copy and contact details are in `content/site.json`; the source files stay in `planning/phase3a/`. Hero artwork, object geometry, the existing grid rules and Pages base are unchanged.
+
+## Phase B visual integration
+
+See [composition, asset usage and verification](docs/phase3b-visual-integration.md). The scene uses the supplied original island and three Parallax wrappers, with four real HTML project buttons. Mobile loads only the island, not the desktop animals/decorations. World styling lives in `src/world.css`; editorial content and all phase-A actions remain intact.
+
+After starting the dev server, run `node scripts/capture-homepage.mjs` to capture the actual 1440×900 and 390×844 homepages in `docs/screenshots/`. `CAPTURE_URL` can select a running production preview.

@@ -8,14 +8,14 @@ test('all nine details support refresh, history, factual data and lazy galleries
   await page.locator('.world-object').first().click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('link', { name: '查看作品' }).click();
-  await expect(page).toHaveURL(/#\/projects\/good-boy$/);
-  await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
+  await expect(page).toHaveURL(/#\/projects\/the-making-of-pets$/);
+  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   await page.reload();
-  await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
+  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   await page.goBack();
   await expect(page.locator('#home-view')).toBeVisible();
   await page.goForward();
-  await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
+  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   for (const project of projects) {
     await page.goto(`/#/projects/${project.slug}`);
     await expect(page.locator('#detail-title')).toHaveText(project.titleCn || project.title);
@@ -44,7 +44,7 @@ test('video downloads start only on request and stop on navigation', async ({ pa
   page.on('request', request => { if (request.url().includes('.mp4')) videos.push(request.url()); });
   await page.goto('/');
   await page.goto('/#/projects/city-life-is-fun');
-  await expect(page.locator('.load-video')).toHaveCount(4);
+  await expect(page.locator('.load-video')).toHaveCount(5);
   await expect(page.locator('video[src]')).toHaveCount(0);
   expect(videos).toEqual([]);
   await page.locator('.load-video').first().click();

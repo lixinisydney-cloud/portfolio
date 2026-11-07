@@ -35,7 +35,7 @@ test('built site works under GitHub Pages repository path, including every asset
     expect((await response.body()).length).toBeGreaterThan(0);
   }
   await page.goto(base);
-  await expect(page.locator('.world-object')).toHaveCount(5);
+  await expect(page.locator('.world-object')).toHaveCount(4);
   for (const img of await page.locator('.scene-image').all()) {
     await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
     expect(await img.getAttribute('src')).toMatch(/^\.\/assets\//);
@@ -43,10 +43,10 @@ test('built site works under GitHub Pages repository path, including every asset
   await page.locator('.world-object').first().click();
   await page.getByRole('link', { name: '查看作品' }).click();
   await page.reload();
-  await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
+  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   await page.getByRole('link', { name: '返回作品', exact: false }).first().click();
   await page.goBack();
-  await expect(page.locator('#detail-title')).toHaveText('GOOD BOY');
+  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   for (const project of projects.filter(p => p.videos?.some(v => v.kind === 'local'))) {
     await page.goto(`${base}#/projects/${project.slug}`);
     for (const button of await page.locator('.load-video').all()) {
