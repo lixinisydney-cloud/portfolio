@@ -1,7 +1,6 @@
 // Original Canvas 2D system. Typography is rasterized per glyph into reusable
 // fill/outline stamps; no reference shaders, paths, code or fonts are imported.
 const clamp = n => Math.max(0, Math.min(1, n));
-const mix = (a, b, t) => a + (b - a) * t;
 function curve(a, b, c, d, t) { const s = 1 - t; return s*s*s*a + 3*s*s*t*b + 3*s*t*t*c + t*t*t*d; }
 export function createLivingTypography(home) {
   const title = home.querySelector('#intro-title');
@@ -14,6 +13,8 @@ export function createLivingTypography(home) {
   const trailSurface = document.createElement('canvas');
   const trailCtx = trailSurface.getContext('2d');
   let lastTrail = { p: -1, y: -1 };
+  const chapters = [...home.querySelectorAll(".project-chapter")].slice(0, 2);
+  let anchors = [], segmentStart = 0, segmentEnd = 1;
   if (!ctx) { canvas.remove(); return { setEnabled() {}, destroy() {} }; }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
@@ -52,18 +53,28 @@ export function createLivingTypography(home) {
       }
     }
     endpoint = Math.max(height, portal.getBoundingClientRect().top + scrollY - height * .25);
+    // Document-space anchors are measured from section boxes, never sticky
+    // children: re-entering the homepage or resizing cannot move their origins.
+    const sizeA = Math.min(width <= 760 ? 88 : 190, width * .17);
+    anchors = chapters.map((chapter, i) => {
+      const y = chapter.getBoundingClientRect().top + scrollY + height * (width <= 760 ? .22 : .57);
+      const char = i ? 'A' : 'M';
+      return { char, chapter, x: width * (i ? .79 : .09), y, size: sizeA,
+        fill: stamp(char,sizeA,false,false), outline: stamp(char,sizeA,false,true),
+        fx:0,fy:0,dx:0,dy:0,energy:0,history:[] };
+    });
+    segmentStart = anchors[0].y - height * .52;
+    segmentEnd = anchors[1].y - height * .52;
+    canvas.dataset.anchorStart = segmentStart.toFixed(2);
+    canvas.dataset.anchorEnd = segmentEnd.toFixed(2);
     target = clamp(scrollY / endpoint); progress = target;
     request();
   }
-  function position(g, index, t) {
-    const direction = index % 2 ? -1 : 1;
-    const endX = width * (.13 + .72 * index / Math.max(1, glyphs.length - 1));
-    const endY = endpoint + height * .08 + Math.sin(index * .65) * height * .075;
-    return {
-      x: curve(g.x, g.x + direction * width * .32, endX - direction * width * .3, endX, t),
-      y: curve(g.y, g.y + height * .82, endY - height * .65, endY, t) - scrollY,
-      angle: Math.sin(t * Math.PI * 2 + index * .28) * t * .38,
-    };
+  function anchorPoint(t) {
+    const [a,b] = anchors, gap = b.y-a.y;
+    return { x: curve(a.x,width*.85,width*.15,b.x,t),
+      y: curve(a.y,a.y+gap*.24,b.y-gap*.24,b.y,t)-scrollY,
+      angle: Math.sin(t*Math.PI*2)*.22 };
   }
   function paintStamp(g, point, alpha, scale, outline, warp = 0, phase = 0, painter = ctx) {
     if (point.y < -g.size * 1.8 || point.y > height + g.size || alpha <= .002) return;
@@ -92,26 +103,37 @@ export function createLivingTypography(home) {
     if (Math.abs(target - progress) < .0001) progress = target;
     const p = progress, time = now / 1000;
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0); ctx.clearRect(0, 0, width, height);
-    const fade = 1 - clamp((p - .87) / .13);
-    const samples = fine.matches ? 18 : 6;
-    // Scroll geometry is cached separately from the living solid glyphs. At
-    // rest, a single bitmap draw replaces hundreds of repeated outline draws.
-    if (Math.abs(p - lastTrail.p) > .0006 || Math.abs(scrollY - lastTrail.y) > .2) {
-      trailCtx.clearRect(0, 0, width, height);
-      if (p > .008 && fade > 0) glyphs.forEach((g, index) => {
-        for (let sample = 0; sample < samples; sample++) {
-          const t = p * sample / samples;
-          const point = position(g, index, t);
-          const alpha = (.04 + .23 * sample / samples) * fade * Math.min(1, p * 9);
-          paintStamp(g, point, alpha, 1 - t * .48, true, 0, 0, trailCtx);
-        }
-      });
-      lastTrail = { p, y: scrollY };
+    // This segment has no playback clock: the same scroll position always
+    // produces the same length, glyph sequence and A fill (including reverse).
+    const segment = clamp((scrollY-segmentStart)/(segmentEnd-segmentStart));
+    const firstReveal = clamp((scrollY-(anchors[0].y-height*.95))/(height*.35));
+    const arrival = clamp((segment-.78)/.22);
+    const fade = 1-clamp(scrollY/(height*.85));
+    if (segment !== lastTrail.p || scrollY !== lastTrail.y) {
+      trailCtx.clearRect(0,0,width,height);
+      const samples = fine.matches ? 66 : 26;
+      for(let i=0;i<=Math.floor(segment*samples);i++) {
+        const t=i/samples, point=anchorPoint(t);
+        const change=clamp((t-.38)/.24);
+        const alpha=.16+.24*t;
+        paintStamp(anchors[0],point,alpha*(1-change),1,true,0,0,trailCtx);
+        paintStamp(anchors[1],point,alpha*change,1,true,0,0,trailCtx);
+      }
+      if(segment>0 && segment<1) {
+        const point=anchorPoint(segment), change=clamp((segment-.38)/.24);
+        paintStamp(anchors[0],point,.65*(1-change),1,true,0,0,trailCtx);
+        paintStamp(anchors[1],point,.65*change,1,true,0,0,trailCtx);
+      }
+      lastTrail={p:segment,y:scrollY};
     }
-    ctx.drawImage(trailSurface, 0, 0, width, height);
+    ctx.drawImage(trailSurface,0,0,width,height);
     let totalEnergy = 0;
-    glyphs.forEach((g, index) => {
-      const at = position(g, index, p);
+    [...glyphs,...anchors].forEach((g, index) => {
+      const anchorIndex = index-glyphs.length;
+      const alpha = anchorIndex < 0 ? fade : anchorIndex === 0 ? firstReveal : arrival;
+      const at = {x:g.x,y:g.y-scrollY,angle:0};
+      if(anchorIndex===1) paintStamp(g,at,clamp((segment-.6)/.4)*(1-arrival),1,true);
+      if(alpha<=0) return;
       const distance = Math.hypot(pointer.x - (at.x + g.fill.advance * .4), pointer.y - (at.y - g.size * .35));
       const weight = fine.matches && pointer.inside ? Math.pow(clamp(1 - distance / (g.size * .8)), 2) : 0;
       const speed = Math.min(60, Math.hypot(pointer.vx, pointer.vy));
@@ -121,24 +143,28 @@ export function createLivingTypography(home) {
       g.fx += g.dx; g.fy += g.dy; g.energy += (weight * (10 + speed * .5) - g.energy) * .13;
       totalEnergy += g.energy;
       if (fine.matches && p < .9) for (const [i, old] of g.history.entries()) {
-        paintStamp(g, old, Math.min(.32, g.energy / 55) * i / 8 * fade, 1 - p * .48, true);
+        paintStamp(g, old, Math.min(.32, g.energy / 55) * i / 8 * alpha, 1, true);
       }
       const organic = fine.matches ? Math.sin(time * .68 + index * .7) * 2.2 : 0;
       const point = { x: at.x + g.fx + organic, y: at.y + g.fy + Math.cos(time * .61 + index * .5) * (fine.matches ? 2 : 0), angle: at.angle + Math.sin(time + index) * g.energy * .002 };
-      paintStamp(g, point, fade, 1 - p * .48, false, fine.matches ? g.energy : 0, time * 2.3 + index);
+      paintStamp(g, point, alpha, 1, false, fine.matches ? g.energy : 0, time * 2.3 + index);
       g.history.push(point); if (g.history.length > 8) g.history.shift();
     });
     pointer.vx *= .86; pointer.vy *= .86;
-    const reveal = clamp((p - .46) / .5);
-    first.style.setProperty('--portal-inset', `${(1 - reveal) * 46}%`);
-    first.style.setProperty('--portal-radius', `${(1 - reveal) * 50}%`);
-    first.style.setProperty('--image-scale', 1.25 - reveal * .25);
-    first.style.setProperty('--portal-y', `${(1 - reveal) * 55}px`);
-    first.style.setProperty('--handoff-title', clamp((p - .7) / .3));
-    first.style.setProperty('--text-x', `${Math.sin(p * Math.PI) * 35}px`);
+    [firstReveal,clamp((segment-.56)/.44)].forEach((reveal,i)=>{
+      const chapter=chapters[i];
+      chapter.style.setProperty('--portal-inset',`${(1-reveal)*46}%`);
+      chapter.style.setProperty('--portal-radius',`${(1-reveal)*50}%`);
+      chapter.style.setProperty('--image-scale',1.25-reveal*.25);
+      chapter.style.setProperty('--portal-y',`${(1-reveal)*55}px`);
+      chapter.style.setProperty('--handoff-title',i?1:firstReveal);
+    });
+    canvas.dataset.anchorProgress=segment.toFixed(4);
+    canvas.dataset.anchorFill=arrival.toFixed(4);
+    canvas.dataset.anchorLetters='M,A';
     canvas.dataset.progress = p.toFixed(4); canvas.dataset.energy = totalEnergy.toFixed(2); canvas.dataset.frames = String(frames);
-    canvas.dataset.state = p >= 1 ? 'settled' : 'running';
-    if (p < 1 && (fine.matches || Math.abs(target - p) > .0001)) request();
+    canvas.dataset.state = scrollY > anchors[1].y + height ? 'settled' : 'running';
+    if (canvas.dataset.state === 'running' && (fine.matches || Math.abs(target - p) > .0001)) request();
   }
   function request() { if (!raf && enabled && !disposed && !reduce.matches && !document.hidden && !home.hidden) raf = requestAnimationFrame(render); }
   function move(event) {
@@ -152,7 +178,7 @@ export function createLivingTypography(home) {
   function preference() {
     const active = !reduce.matches;
     home.classList.toggle('canvas-active', active); canvas.hidden = !active;
-    if (!active) { cancelAnimationFrame(raf); raf = 0; first.style.setProperty('--portal-inset','0%');first.style.setProperty('--portal-y','0px'); }
+    if (!active) { cancelAnimationFrame(raf); raf = 0; chapters.forEach(c=>{ c.style.setProperty('--portal-inset','0%'); c.style.setProperty('--portal-y','0px'); }); }
     else measure();
   }
   function visibility() { if (document.hidden) { cancelAnimationFrame(raf); raf = 0; } else request(); }

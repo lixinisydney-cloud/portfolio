@@ -84,3 +84,27 @@ test('new details have native videos and direct responsive embeds, without cover
     if(p.videos.length) expect(await page.locator('.detail-videos').evaluate(e=>e.compareDocumentPosition(document.querySelector('.detail-gallery')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
   }
 });
+
+test('M to A anchors extend glyph trail, fill A and reveal its portal reversibly', async ({page})=>{
+  await page.setViewportSize({width:1440,height:900});await page.goto('/');
+  const c=page.locator('.typography-canvas');
+  await expect(c).toHaveAttribute('data-anchor-letters','M,A');
+  const geometry=()=>c.evaluate(c=>({start:+c.dataset.anchorStart,end:+c.dataset.anchorEnd}));
+  const {start,end}=await geometry();expect(end).toBeGreaterThan(start+500);
+  const jump=async t=>{await page.evaluate(y=>scrollTo(0,y),start+(end-start)*t);await expect.poll(async()=>+(await c.getAttribute('data-anchor-progress'))).toBeCloseTo(t,2);};
+  const portal=page.locator('.portal-visual').nth(1);
+  await jump(.2);const closed=await portal.evaluate(e=>getComputedStyle(e).clipPath);
+  await expect(c).toHaveAttribute('data-anchor-fill','0.0000');
+  await jump(.9);const open=await portal.evaluate(e=>getComputedStyle(e).clipPath);
+  expect(open).not.toBe(closed);expect(+(await c.getAttribute('data-anchor-fill'))).toBeGreaterThan(.5);
+  await page.waitForTimeout(250);expect(+(await c.getAttribute('data-anchor-progress'))).toBeCloseTo(.9,2);
+  await jump(1);await expect(c).toHaveAttribute('data-anchor-fill','1.0000');
+  await jump(.2);await expect(c).toHaveAttribute('data-anchor-fill','0.0000');
+  expect(await portal.evaluate(e=>getComputedStyle(e).clipPath)).toBe(closed);
+  // Re-measuring while sticky children are displaced must not move the anchors.
+  await page.setViewportSize({width:1300,height:900});await page.setViewportSize({width:1440,height:900});
+  await expect.poll(geometry).toEqual({start,end});
+  await expect(c).toHaveCSS('pointer-events','none');
+  await jump(1);await page.locator('.portal-link').nth(1).click();
+  await expect(page).toHaveURL(/#\/projects\/anger-market$/);await expect(c).toBeHidden();
+});

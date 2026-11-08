@@ -51,3 +51,52 @@ Reproduce: install Playwright's Chromium/ffmpeg for your system, start the produ
 `npm run build`, `npm test` (27 cases), plus pixel changes, pointer energy/recovery, scroll-linked masks, reverse restoration, frame pause after navigation, reduced motion, resize, direct video markup, all local clips and route tests. Existing 17 legacy regressions remain; redesigned-route assertions now expect the English detail title.
 
 `scripts/build-offline-preview.mjs` creates a standalone HTML and an `artifacts/review/` folder containing HTML + four videos. The existing PR #4 Actions artifact uploads that folder as a real ZIP download. No main merge or Pages/Vercel deployment is performed.
+
+## Review iteration: M → A Letter Anchors
+
+Only the Pets **M** and Anger Market **A** are active in this iteration. Other
+chapters keep their existing presentation. Footer and direct-media are unchanged.
+
+The renderer now measures two document-space anchors from the corresponding
+section boxes and viewport dimensions. Sticky child positions do not affect the
+measurement. A cubic path connects these anchors. Scroll distance determines the
+number of cached outlined glyph stamps along this path, blending M into A near
+the middle. Arrival changes the destination from outlined to filled and opens
+Anger Market's portal. Reverse scroll uses the same equations, without a playback
+clock. The hero retains its own idle and pointer deformation, rather than sending
+all of SYDNEY'S WORLD down separate curves.
+
+The first two portals belong exclusively to living-typography; scroll-composition
+starts at chapter three. Canvas has pointer-events:none. Reduced motion uses the
+existing static HTML and unmasked images. Route changes suspend rendering.
+
+Evidence: `docs/recordings/adrift-dynamics/05-letter-anchors-m-a.mp4`, captured from
+the production build at 1440×900 with real forward/backward scrolling. Reproduce:
+`npm run build`, start `npm run preview -- --port 4174`, then run
+`PLAYWRIGHT_BROWSERS_PATH=/tmp/sydney-pw node scripts/record-anchor-demo.mjs`
+(the cloud recording cache must contain Playwright's FFmpeg binary).
+
+Validation: build and all 28 Playwright tests pass locally. The new regression
+covers progress, destination fill, portal reversal, stationary progress, stable
+anchor geometry after resizing, and direct image navigation through the canvas.
+
+### Shared live editing
+
+Use one checkout on the same machine for Codex CLI/IDE and the browser:
+
+```sh
+git switch feat/adrift-redesign
+npm ci
+npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+Open http://localhost:5173 in that machine's browser. Codex edits this same folder;
+Vite applies those edits through hot reload. A phone on the same network can open
+http://YOUR_COMPUTER_LAN_IP:5173 (subject to local firewall settings).
+
+A cloud-chat checkout and a checkout on your computer are separate filesystems.
+To get immediate shared edits, run Codex locally in the folder serving Vite;
+otherwise synchronize the cloud branch with git push/pull. The downloaded offline
+HTML is a snapshot and does not receive hot updates. YouTube embeds in file://
+previews have separate origin/referrer restrictions; that investigation remains
+in the subsequent task, not this iteration.
