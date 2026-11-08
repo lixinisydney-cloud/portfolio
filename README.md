@@ -72,3 +72,19 @@ See [migration, component, poster provenance and missing-media guide](docs/phase
 See [composition, asset usage and verification](docs/phase3b-visual-integration.md). The scene uses the supplied original island and three Parallax wrappers, with four real HTML project buttons. Mobile loads only the island, not the desktop animals/decorations. World styling lives in `src/world.css`; editorial content and all phase-A actions remain intact.
 
 After starting the dev server, run `node scripts/capture-homepage.mjs` to capture the actual 1440×900 and 390×844 homepages in `docs/screenshots/`. `CAPTURE_URL` can select a running production preview.
+
+## Typography redesign — round 1
+
+On `feat/adrift-redesign`, the root entry is a new native-scroll typography/image composition; the previous site remains at `legacy.html`. Both entries are built with the same GitHub Pages base. Details retain the prior content/media behavior until round 2.
+
+See [research, implementation boundary, screenshots and preview instructions](docs/adrift-round1.md). Generate a standalone browser review file with `node scripts/build-offline-preview.mjs`; this embeds only our media and implementation and is never deployed. No reference code, imagery, fonts or sound are bundled.
+
+For an independent Vercel Preview (without touching Pages), see [preview setup and account authorization steps](docs/preview-deployment.md). `vercel.json` disables Git-triggered Vercel deployments; an authenticated manual `vercel deploy` targets Preview by default. No Vercel deployment URL exists until that command actually succeeds.
+
+## Interactive typography correction and direct video
+
+The redesigned root now uses original per-glyph Canvas deformation, scroll-sampled ghost trails and a shared first-image portal timeline. See [implementation, validation and four real browser recordings](docs/interactive-typography.md). The existing archived `legacy.html` is unchanged.
+
+Root detail pages now use direct native MP4 controls and direct responsive YouTube embeds (with Watch Online fallback), without custom cover gates. Offline file origins or network restrictions may prevent external YouTube embedding; local MP4s remain embedded in the standalone preview.
+
+The PR's downloadable preview artifact now contains the interactive HTML and a `videos/` folder with the four demonstrations. Nothing is merged or deployed to main.

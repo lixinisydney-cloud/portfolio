@@ -1,3 +1,4 @@
+// Legacy regression: the preserved phase-B page remains at legacy.html.
 import { test, expect } from '@playwright/test';
 import { createStaticServer } from './support/static-server.js';
 import { readFile } from 'node:fs/promises';
@@ -26,7 +27,7 @@ test('built site works under GitHub Pages repository path, including every asset
     expect(response.ok(), path).toBe(true);
     expect((await response.body()).length).toBeGreaterThan(0);
   }
-  await page.goto(base);
+  await page.goto(`${base}legacy.html`);
   await expect(page.locator('.world-object')).toHaveCount(4);
   for (const img of await page.locator('.scene-image').all()) {
     await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
@@ -40,7 +41,7 @@ test('built site works under GitHub Pages repository path, including every asset
   await page.goBack();
   await expect(page.locator('#detail-title')).toHaveText('制作宠物');
   for (const project of projects.filter(p => p.videos?.some(v => v.kind === 'local'))) {
-    await page.goto(`${base}#/projects/${project.slug}`);
+    await page.goto(`${base}legacy.html#/projects/${project.slug}`);
     for (const button of await page.locator('.load-video').all()) {
       const index = Number(await button.getAttribute('data-video-index'));
       if (project.videos[index].kind !== 'local') continue;
@@ -81,4 +82,26 @@ test('static video server supports partial, suffix, HEAD and unsatisfiable range
   // The large original clip must expose metadata before media payload, even on
   // hosts where a browser has to read sequentially instead of requesting ranges.
   expect(file.indexOf(Buffer.from('moov'))).toBeLessThan(file.indexOf(Buffer.from('mdat')));
+});
+
+
+test('new homepage and direct image routes work under the repository prefix', async ({ page }) => {
+  const failures = [];
+  page.on('response', response => { if (response.status() >= 400) failures.push(response.url()); });
+  await page.goto(base);
+  await expect(page.locator('.project-chapter')).toHaveCount(9);
+  await expect(page.locator('dialog')).toHaveCount(0);
+  const link = page.locator('[data-project-link="the-making-of-pets"]');
+  await link.scrollIntoViewIfNeeded();
+  await expect.poll(() => link.locator('img').evaluate(i => i.complete && i.naturalWidth > 0)).toBe(true);
+  await expect(link.locator('img')).toHaveAttribute('src', /^\.\/assets\//);
+  await link.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(`${base}#/projects/the-making-of-pets`);
+  await page.reload();
+  await expect(page.locator('#detail-title')).toHaveText('The Making of Pets');
+  await page.goBack();
+  await expect(page.locator('#home-view')).toBeVisible();
+  await expect(link).toBeFocused();
+  expect(failures).toEqual([]);
 });

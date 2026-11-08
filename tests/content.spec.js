@@ -1,3 +1,4 @@
+// Legacy regression: the preserved phase-B page remains at legacy.html.
 import { test, expect } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -32,7 +33,7 @@ test('slug migration is repeatable and retains all phase-2 image/local MP4 paths
 test('Chinese-first nine project entries, separate horse pages and reviewed project covers', async ({ page }) => {
   const missing = [];
   page.on('response', response => { if (response.status() >= 400 && response.url().includes('/assets/')) missing.push(response.url()); });
-  await page.goto('/');
+  await page.goto('/legacy.html');
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await expect(page.locator('#work-grid .work-card')).toHaveCount(8);
   await expect(page.locator('#experiment-grid .work-card')).toHaveCount(1);
@@ -44,13 +45,13 @@ test('Chinese-first nine project entries, separate horse pages and reviewed proj
     await expect(card.locator('img')).toHaveCount(1);
     await card.scrollIntoViewIfNeeded();
     await expect.poll(() => card.locator('img').evaluate(i => i.complete && i.naturalWidth > 0)).toBe(true);
-    await page.goto(`/#/projects/${slug}`);
+    await page.goto(`/legacy.html#/projects/${slug}`);
     await expect(page.locator('.responsibility')).toHaveCount(slug === 'stubborn-horse' ? 1 : 0);
     if (slug === 'the-uncertain-oracle') await expect(page.locator('.demo-hint').first()).toContainText('摄像头权限');
     await expect(page.locator('body')).not.toContainText(/coming soon|待确认|临时封面|low resolution|provisional|mediaStatus/i);
-    await page.goto('/');
+    await page.goto('/legacy.html');
   }
-  await page.goto('/#/projects/horse-motion-study');
+  await page.goto('/legacy.html#/projects/horse-motion-study');
   await expect(page.locator('#detail-title')).toHaveText('马的算法运动研究');
   await expect(page.locator('.cta-live')).toHaveCount(0);
   for (const link of await page.locator('a[target="_blank"]').all()) {
@@ -66,7 +67,7 @@ test('YouTube uses local posters and no iframe/network until clicked, with fallb
   // Exercise the UI with a deterministic blocked-provider response, not a real
   // third-party request or a claim that YouTube plays in every interview network.
   await page.route('https://www.youtube-nocookie.com/**', route => route.fulfill({ status: 503, contentType: 'text/html', body: 'Unavailable' }));
-  await page.goto('/#/projects/anger-market');
+  await page.goto('/legacy.html#/projects/anger-market');
   await expect(page.locator('.load-video')).toHaveCount(2);
   await expect(page.locator('iframe')).toHaveCount(0);
   for (const img of await page.locator('.load-video img').all()) {
@@ -82,7 +83,7 @@ test('YouTube uses local posters and no iframe/network until clicked, with fallb
 });
 
 test('watch CTA keeps hash detail route and keyboard can start video', async ({ page }) => {
-  await page.goto('/#/projects/city-life-is-fun');
+  await page.goto('/legacy.html#/projects/city-life-is-fun');
   await page.getByRole('button', { name: '观看影片', exact: true }).click();
   await expect(page).toHaveURL(/#\/projects\/city-life-is-fun$/);
   const button = page.locator('.load-video').first();
