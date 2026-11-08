@@ -37,3 +37,10 @@ test('English detail titles, Chinese body and a complete nine-project Next cycle
   await expect(page.locator('.detail-intro')).not.toBeEmpty();
  }
 });
+
+test('provider diagnostic times out an unfulfilled play promise instead of hanging the release',async({page})=>{
+ const {probePlay}=await import('../scripts/media-probe.js');
+ await page.setContent('<video controls></video>');
+ await expect(probePlay(page.locator('video'),150)).rejects.toThrow(/Playback probe timed out/);
+ await expect.poll(()=>page.locator('video').evaluate(v=>v.paused)).toBe(true);
+});

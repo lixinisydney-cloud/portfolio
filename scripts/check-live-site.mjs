@@ -1,7 +1,8 @@
 // Run unchanged against Vite HTTP or the deployed Pages HTTPS origin.
 // Site regressions fail the job; provider/network diagnostics are reported
 // separately because a third-party playback restriction is not a site pass.
-import {chromium} from '@playwright/test';
+import {chromium,request} from '@playwright/test';
+import {probePlay} from './media-probe.js';
 import {readFile,mkdir,writeFile,appendFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const url=process.env.LIVE_SITE_URL||'http://127.0.0.1:4174/';
@@ -10,7 +11,8 @@ const projects=JSON.parse(await readFile('content/projects-draft.json','utf8'));
 const report={url,checkedAt:new Date().toISOString(),projects:[],externalLinks:[],youtube:[]};
 const browser=await chromium.launch(process.env.CI?{}:{executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:900}});
-page.setDefaultTimeout(15000);
+page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(20000);
+const external=await request.newContext(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{});
 const referers=new Map();
 page.on('request',r=>{if(r.url().includes('youtube-nocookie.com/embed/'))referers.set(r.url(),r.headers().referer||null)});
 try{
@@ -26,7 +28,7 @@ try{
    await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());
   }
   for(const video of await page.locator('video').all()){
-   await video.scrollIntoViewIfNeeded();await video.evaluate(v=>{v.muted=true;return v.play()});
+   await video.scrollIntoViewIfNeeded();await probePlay(video);
    await page.waitForFunction(v=>v.readyState>=2&&v.currentTime>0,await video.elementHandle());await video.evaluate(v=>v.pause());
   }
   for(const [i,v] of p.videos.entries())if(v.kind==='youtube'){
@@ -35,7 +37,7 @@ try{
    try{
     const frame=await iframe.elementHandle().then(e=>e.contentFrame());
     await frame.locator('video').waitFor({timeout:7000});
-    await frame.locator('video').evaluate(v=>{v.muted=true;return v.play()});
+    await probePlay(frame.locator('video'));
     await frame.waitForFunction(()=>document.querySelector('video')?.currentTime>0,{},{timeout:5000});
     result.status='playing';
    }catch(error){
@@ -51,7 +53,7 @@ try{
   report.projects.push({slug:p.slug,status:'passed',nativeVideos:p.videos.filter(v=>v.kind==='local').length});
  }
  for(const link of [...new Set(projects.flatMap(p=>p.links.map(l=>l.url)))]){
-  try{const r=await page.request.get(link,{timeout:20000});report.externalLinks.push({url:link,status:r.status()});}
+  try{const r=await external.get(link,{timeout:10000});report.externalLinks.push({url:link,status:r.status()});}
   catch(error){report.externalLinks.push({url:link,status:'not-confirmed',message:error.message.slice(0,200)});}
  }
  await page.setViewportSize({width:390,height:844});await page.goto(url,{waitUntil:'domcontentloaded'});
@@ -60,7 +62,7 @@ try{
  await page.screenshot({path:`${output}/mobile.png`});
  report.site='passed';
 }finally{
- await browser.close();await writeFile(`${output}/report.json`,JSON.stringify(report,null,2));
+ await external.dispose();await browser.close();await writeFile(`${output}/report.json`,JSON.stringify(report,null,2));
  if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,`## Live site verification\n\nOrigin: ${url}\n\nSite: ${report.site||'failed'}; project routes: ${report.projects.length}/9.\n\nYouTube playback confirmed: ${report.youtube.filter(x=>x.status==='playing').length}/${report.youtube.length}. See live-site-verification artifact for individual provider errors and external-link responses.\n`);
 }
 console.log(JSON.stringify(report,null,2));
