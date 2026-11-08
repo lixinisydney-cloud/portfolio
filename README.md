@@ -78,3 +78,5 @@ After starting the dev server, run `node scripts/capture-homepage.mjs` to captur
 On `feat/adrift-redesign`, the root entry is a new native-scroll typography/image composition; the previous site remains at `legacy.html`. Both entries are built with the same GitHub Pages base. Details retain the prior content/media behavior until round 2.
 
 See [research, implementation boundary, screenshots and preview instructions](docs/adrift-round1.md). Generate a standalone browser review file with `node scripts/build-offline-preview.mjs`; this embeds only our media and implementation and is never deployed. No reference code, imagery, fonts or sound are bundled.
+
+For an independent Vercel Preview (without touching Pages), see [preview setup and account authorization steps](docs/preview-deployment.md). `vercel.json` disables Git-triggered Vercel deployments; an authenticated manual `vercel deploy` targets Preview by default. No Vercel deployment URL exists until that command actually succeeds.
