@@ -72,3 +72,9 @@ See [migration, component, poster provenance and missing-media guide](docs/phase
 See [composition, asset usage and verification](docs/phase3b-visual-integration.md). The scene uses the supplied original island and three Parallax wrappers, with four real HTML project buttons. Mobile loads only the island, not the desktop animals/decorations. World styling lives in `src/world.css`; editorial content and all phase-A actions remain intact.
 
 After starting the dev server, run `node scripts/capture-homepage.mjs` to capture the actual 1440×900 and 390×844 homepages in `docs/screenshots/`. `CAPTURE_URL` can select a running production preview.
+
+## Typography redesign — round 1
+
+On `feat/adrift-redesign`, the root entry is a new native-scroll typography/image composition; the previous site remains at `legacy.html`. Both entries are built with the same GitHub Pages base. Details retain the prior content/media behavior until round 2.
+
+See [research, implementation boundary, screenshots and preview instructions](docs/adrift-round1.md). Generate a standalone browser review file with `node scripts/build-offline-preview.mjs`; this embeds only our media and implementation and is never deployed. No reference code, imagery, fonts or sound are bundled.

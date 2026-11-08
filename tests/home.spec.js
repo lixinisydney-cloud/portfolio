@@ -1,9 +1,10 @@
+// Legacy regression: the preserved phase-B page remains at legacy.html.
 import { test, expect } from '@playwright/test';
 test('desktop projects, mouse parallax, keyboard dialog and navigation', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
-  await page.goto('/');
+  await page.goto('/legacy.html');
   await expect(page.locator('.world-object')).toHaveCount(4);
   await expect(page.locator('.work-card')).toHaveCount(9);
   await page.mouse.move(200, 200);
@@ -33,7 +34,7 @@ test('desktop projects, mouse parallax, keyboard dialog and navigation', async (
 test('touch layout exposes every title and opens preview without hover', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
-  await page.goto('/');
+  await page.goto('/legacy.html');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   for (const button of await page.locator('.world-object').all()) {
     await expect(button.locator('.object-label')).toHaveCSS('opacity', '1');
@@ -46,7 +47,7 @@ test('touch layout exposes every title and opens preview without hover', async (
 });
 test('reduced motion disables parallax', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
+  await page.goto('/legacy.html');
   await page.mouse.move(900, 500);
   expect(await page.locator('.world-island').evaluate(el => el.style.transform)).toBe('');
 });

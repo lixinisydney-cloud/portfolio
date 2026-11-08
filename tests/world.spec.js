@@ -1,10 +1,11 @@
+// Legacy regression: the preserved phase-B page remains at legacy.html.
 import { test, expect } from '@playwright/test';
 import source from '../planning/phase3a/03_project_content_v3.json' with { type: 'json' };
 import projects from '../content/projects-draft.json' with { type: 'json' };
 
 test('original island and four reachable semantic destinations at 1440x900', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/');
+  await page.goto('/legacy.html');
   await expect(page.locator('.main-island')).toHaveAttribute('src', /assets\/world\/island-main\.webp$/);
   await expect.poll(() => page.locator('.main-island').evaluate(i => i.complete && i.naturalWidth === 1738)).toBe(true);
   await expect(page.locator('.hotspot')).toHaveCount(4);
@@ -29,7 +30,7 @@ test('390x844 scene stays compact and does not download desktop ornaments or vid
   const page = await context.newPage();
   const requests = [];
   page.on('request', r => requests.push(r.url()));
-  await page.goto('/');
+  await page.goto('/legacy.html');
   await expect(page.locator('#scene img')).toHaveCount(1);
   await expect(page.locator('.world-island')).not.toHaveAttribute('style', /translate3d/);
   const top = await page.locator('#work').evaluate(el => el.getBoundingClientRect().top);
@@ -56,13 +57,13 @@ test('phase A editorial copy, links, roles and media actions remain intact', asy
     for (const video of original.videos) expect(project.videos.some(v => video.src ? v.src === video.src : v.url === video.url)).toBe(true);
   }
   for (const slug of ['stubborn-horse', 'dragon-dance', 'the-uncertain-oracle']) {
-    await page.goto(`/#/projects/${slug}`);
+    await page.goto(`/legacy.html#/projects/${slug}`);
     await expect(page.locator('.detail-hero img')).toHaveAttribute('src', /phase3b-references/);
     await expect(page.locator('.video-poster .load-video img')).toHaveAttribute('src', /phase3b-references/);
     await expect(page.locator('.cta-live')).toHaveAttribute('rel', 'noopener noreferrer');
     await expect(page.locator('.cta-github')).toHaveAttribute('rel', 'noopener noreferrer');
   }
-  await page.goto('/#/projects/city-life-is-fun');
+  await page.goto('/legacy.html#/projects/city-life-is-fun');
   await expect(page.locator('.detail-hero img')).toHaveAttribute('src', /city-life-final-poster/);
   await expect(page.locator('.load-video')).toHaveCount(5);
   await expect(page.locator('video')).toHaveCount(0);
@@ -75,7 +76,7 @@ test('all seven external video entries mount the correct embed only on click', a
   for (const project of projects) {
     const youtubeVideos = project.videos.map((video, index) => ({ ...video, index })).filter(v => v.kind === 'youtube');
     if (!youtubeVideos.length) continue;
-    await page.goto(`/#/projects/${project.slug}`);
+    await page.goto(`/legacy.html#/projects/${project.slug}`);
     await expect(page.locator('iframe')).toHaveCount(0);
     for (const video of youtubeVideos) {
       const figure = page.locator('.video-poster').nth(video.index);
