@@ -99,7 +99,7 @@ test('new homepage and direct image routes work under the repository prefix', as
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(`${base}#/projects/the-making-of-pets`);
   await page.reload();
-  await expect(page.locator('#detail-title')).toHaveText('制作宠物');
+  await expect(page.locator('#detail-title')).toHaveText('The Making of Pets');
   await page.goBack();
   await expect(page.locator('#home-view')).toBeVisible();
   await expect(link).toBeFocused();

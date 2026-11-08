@@ -130,3 +130,31 @@ body[data-view=project] .drift-header{background:#f7f3f1ed}
 .motion-ready .portal-visual{will-change:auto}
 .motion-ready .is-near .portal-visual{will-change:clip-path}
 @media(max-width:760px){.redesign .drift-header{left:6%;right:6%;margin:0}.redesign main{padding-top:72px}.chapter-inner{top:auto}}
+.typography-canvas{position:fixed;inset:0;width:100vw;height:100svh;z-index:6;pointer-events:none}
+.canvas-active #intro-title{transform:none!important}
+.canvas-active #intro-title,.canvas-active #intro-title *{color:transparent!important;-webkit-text-stroke:0!important}
+.canvas-active #intro-title .outline-echo{display:none}
+.canvas-active .project-chapter:first-child .portal-visual{transform:translateY(var(--portal-y,0px));transform-origin:center}
+@media(prefers-reduced-motion:reduce){.typography-canvas{display:none!important}.canvas-active .project-chapter:first-child .portal-visual{transform:none!important}}
+.direct-videos{width:100%;margin:65px 0}
+.direct-media{margin:0 0 55px;width:100%}
+.direct-player{width:100%;background:#080808;aspect-ratio:var(--media-aspect);max-height:88svh;display:grid;place-items:center}
+.direct-player iframe,.direct-player video{display:block;width:100%;height:100%;max-height:88svh;border:0;object-fit:contain}
+.direct-media figcaption{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:12px;margin-top:12px;line-height:1.5}
+.direct-media-status{font-size:12px;line-height:1.7;color:#76687a}
+.detail-introduction,.detail-links,.detail-tools{margin:50px 0}
+.detail-introduction h2,.detail-links h2,.detail-tools h2{font-size:15px;letter-spacing:.5px;text-transform:uppercase;font-weight:500}
+.detail-introduction .detail-intro{display:block;max-width:850px;margin:20px 0 0}
+.detail-introduction .detail-intro p{font-size:18px;line-height:1.95;margin:0 0 22px}
+.detail-introduction .detail-intro p:first-child{font-size:23px}
+.detail-introduction h3{font-size:14px;font-weight:500;margin-top:35px}
+@media(max-width:760px){.detail-introduction .detail-intro p{font-size:16px}.detail-introduction .detail-intro p:first-child{font-size:19px}.direct-media{margin-bottom:35px}.direct-media figcaption{align-items:start;font-size:10px}.detail-heading h1{overflow-wrap:anywhere}}
+.canvas-active .journal-intro{opacity:0}
+.canvas-active .project-chapter:first-child .chapter-heading{opacity:var(--handoff-title,0)}
+@media(prefers-reduced-motion:reduce){
+ .canvas-active #intro-title,.canvas-active #intro-title *{color:var(--chalk)!important}
+ .canvas-active #intro-title .title-period{color:var(--signal)!important}
+ .canvas-active .journal-intro,.canvas-active .project-chapter:first-child .chapter-heading{opacity:1}
+}
+/* Moving portal geometry must not make the browser compensate scroll position. */
+.adrift-home{overflow-anchor:none}

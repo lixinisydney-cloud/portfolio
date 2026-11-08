@@ -5,9 +5,10 @@ import { projects, mainProjects, experiments, site, projectTitle } from './proje
 import { externalLink } from './components/cta.js';
 import { escape } from './components/media.js';
 import { renderWork } from './components/work-stream.js';
+import { createLivingTypography } from './components/living-typography.js';
 import { createScrollComposition } from './components/scroll-composition.js';
 import { renderDetail } from './components/detail-view.js';
-import { stopMedia } from './components/video-poster.js';
+import { stopDirectMedia as stopMedia } from './components/direct-media.js';
 
 const home = document.querySelector('#home-view');
 const detail = document.querySelector('#project-detail');
@@ -16,7 +17,9 @@ experiments.forEach((project, index) => renderWork(project, index + 9, document.
 document.querySelector('#about-short').textContent = site.aboutShortZh;
 document.querySelector('#about-copy').textContent = site.aboutZh;
 document.querySelector('#contact-links').innerHTML = `<a class="project-link" href="mailto:${escape(site.contact.email)}">${escape(site.contact.email)}</a>${externalLink(site.contact.github, 'GitHub')}${externalLink(site.contact.instagram, 'Instagram')}`;
-const motion = createScrollComposition(home);
+const composition = createScrollComposition(home);
+const lettering = createLivingTypography(home);
+const motion = { setEnabled(value) { composition.setEnabled(value); lettering.setEnabled(value); } };
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 let returnSlug;
 let returnScroll = 0;

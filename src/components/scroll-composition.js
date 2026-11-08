@@ -2,7 +2,7 @@
 // A single scheduled frame updates nearby chapters; no permanent animation loop.
 const clamp = value => Math.max(0, Math.min(1, value));
 export function createScrollComposition(home) {
-  const chapters = [...home.querySelectorAll('[data-motion]')];
+  const chapters = [...home.querySelectorAll('[data-motion]')].slice(1);
   const intro = home.querySelector('.intro');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0;

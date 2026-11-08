@@ -34,10 +34,10 @@ test('all nine images go straight to the correct detail and survive refresh', as
     await expect(page.locator('#project-detail')).toBeVisible();
     await expect(page.locator('dialog')).toHaveCount(0);
     const p = projects.find(p => p.slug === slug);
-    await expect(page.locator('#detail-title')).toHaveText(p.titleCn || p.title);
+    await expect(page.locator('#detail-title')).toHaveText(p.title);
     await expect(page.locator('.detail-intro')).toContainText(p.detailZh);
     await page.reload();
-    await expect(page.locator('#detail-title')).toHaveText(p.titleCn || p.title);
+    await expect(page.locator('#detail-title')).toHaveText(p.title);
   }
   expect(errors).toEqual([]);
 });
