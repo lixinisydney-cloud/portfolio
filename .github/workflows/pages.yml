@@ -35,6 +35,17 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Test interactions and repository-path build
         run: npm test
+      - name: Build downloadable interactive preview
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/adrift-redesign'
+        run: node scripts/build-offline-preview.mjs
+      - name: Upload interactive preview ZIP
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/adrift-redesign'
+        uses: actions/upload-artifact@v4
+        with:
+          name: SYDNEYS-WORLD-interactive-preview
+          path: artifacts/sydneys-world-round1-preview.html
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload test results on failure
         if: failure()
         uses: actions/upload-artifact@v4
