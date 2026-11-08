@@ -158,3 +158,15 @@ body[data-view=project] .drift-header{background:#f7f3f1ed}
 }
 /* Moving portal geometry must not make the browser compensate scroll position. */
 .adrift-home{overflow-anchor:none}
+
+/* V1 contact: original black/white editorial grid, orange only on interaction. */
+.redesign .drift-footer{background:#080808;color:var(--chalk);border-top:1px solid #eeece560;padding-top:35px}
+.drift-footer .micro-label{color:#aaa99f}
+.redesign .drift-footer h2{color:var(--chalk);font-size:clamp(56px,11vw,180px);margin:55px 0;line-height:.9}
+.drift-footer .contact-links{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0;border-top:1px solid #eeece54a;border-bottom:1px solid #eeece54a}
+.drift-footer .project-link{color:var(--chalk);border:0;border-right:1px solid #eeece54a;padding:28px 24px;font-size:14px;min-height:90px}
+.drift-footer .project-link:first-child{padding-left:0}.drift-footer .project-link:last-child{border-right:0}
+.drift-footer .project-link:hover,.drift-colophon a:hover{color:var(--signal)}
+.drift-colophon{margin-top:35px;border-color:#eeece54a;color:#aaa99f}
+.redesign .drift-footer a:focus-visible{outline-color:var(--signal)}
+@media(max-width:760px){.drift-footer .contact-links{grid-template-columns:1fr 1fr}.drift-footer .project-link:first-child{grid-column:1/-1;border-bottom:1px solid #eeece54a;border-right:0}.drift-footer .project-link{padding:22px 0;min-height:70px}.drift-footer .project-link:last-child{padding-left:22px}.drift-colophon{gap:10px;font-size:8px}.footer-arrow{display:none}}

@@ -4,9 +4,8 @@ import './adrift.css';
 import { projects, mainProjects, experiments, site, projectTitle } from './projects.js';
 import { externalLink } from './components/cta.js';
 import { escape } from './components/media.js';
-import { renderWork } from './components/work-stream.js';
+import { workPresentation, renderWork } from './components/work-stream.js';
 import { createLivingTypography } from './components/living-typography.js';
-import { createScrollComposition } from './components/scroll-composition.js';
 import { renderDetail } from './components/detail-view.js';
 import { stopDirectMedia as stopMedia } from './components/direct-media.js';
 
@@ -16,10 +15,9 @@ mainProjects.forEach((project, index) => renderWork(project, index + 1, document
 experiments.forEach((project, index) => renderWork(project, index + 9, document.querySelector('#experiment-stream')));
 document.querySelector('#about-short').textContent = site.aboutShortZh;
 document.querySelector('#about-copy').textContent = site.aboutZh;
-document.querySelector('#contact-links').innerHTML = `<a class="project-link" href="mailto:${escape(site.contact.email)}">${escape(site.contact.email)}</a>${externalLink(site.contact.github, 'GitHub')}${externalLink(site.contact.instagram, 'Instagram')}`;
-const composition = createScrollComposition(home);
+document.querySelector('#contact-links').innerHTML = `<a class="project-link" href="mailto:${escape(site.contact.email)}">Email / ${escape(site.contact.email)}</a>${externalLink(site.contact.github, 'GitHub')}${externalLink(site.contact.instagram, 'Instagram')}`;
 const lettering = createLivingTypography(home);
-const motion = { setEnabled(value) { composition.setEnabled(value); lettering.setEnabled(value); } };
+const motion = { setEnabled(value) { lettering.setEnabled(value); } };
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 let returnSlug;
 let returnScroll = 0;
@@ -45,7 +43,7 @@ function route() {
     const project = projects.find(p => encodeURIComponent(p.slug) === match[1]);
     if (project) {
       renderDetail(detail, project);
-      document.title = `${project.title} — SYDNEY'S WORLD`;
+      document.title = `${workPresentation[project.slug].title} — SYDNEY'S WORLD`;
     } else {
       detail.innerHTML = '<h1 id="detail-title" tabindex="-1">Project not found</h1><a class="project-link" href="#work">Back to Works</a>';
       document.title = "Project not found — SYDNEY'S WORLD";

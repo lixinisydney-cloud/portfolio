@@ -34,7 +34,7 @@ try {
 await writeFile('artifacts/review/READ-ME.txt', `SYDNEY'S WORLD — Interactive typography review
 
 Open sydneys-world-round1-preview.html in a normal browser. Scroll down and back up; move the pointer across the title.
-The videos folder contains actual Playwright browser recordings, including 05-letter-anchors-m-a.mp4 for the latest M → A review.
+The videos folder contains actual Playwright browser recordings, including 06-v1-all-nine-anchors.mp4 for the complete V1 review.
 Local MP4 players are embedded with native controls. YouTube requires network access and may reject file:// embeds; use Watch Online or serve this folder with python -m http.server 8000.
-The legacy island version is retained in the source repository, not this standalone preview. Nothing is merged or deployed to main.
+The legacy island version is retained in the source repository, not this standalone preview. Deployment status is recorded in GitHub Actions; this downloaded file is a snapshot.
 `);

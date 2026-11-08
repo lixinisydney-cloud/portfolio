@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+const englishTitles = {'city-life-is-fun':'City Life Is Fun','chroma-residences':'Chroma Residences','horse-motion-study':'Horse Motion Study'};
+const displayTitle = p => englishTitles[p.slug] || p.title;
 import projects from '../content/projects-draft.json' with { type: 'json' };
 
 test('canvas pixels move at idle, proximity/velocity deform glyphs and departure recovers', async ({ page }) => {
@@ -61,7 +63,7 @@ test('new details have native videos and direct responsive embeds, without cover
   await page.route('https://www.youtube-nocookie.com/**',r=>r.fulfill({status:200,contentType:'text/html',body:'<p>Provider fixture</p>'}));
   for(const p of projects){
     await page.goto(`/#/projects/${p.slug}`);
-    await expect(page.locator('#detail-title')).toHaveText(p.title);
+    await expect(page.locator('#detail-title')).toHaveText(displayTitle(p));
     await expect(page.locator('.load-video,.video-poster,.video-play-label')).toHaveCount(0);
     await expect(page.locator('.direct-media')).toHaveCount(p.videos.length);
     for(const [i,v] of p.videos.entries()){
@@ -88,7 +90,7 @@ test('new details have native videos and direct responsive embeds, without cover
 test('M to A anchors extend glyph trail, fill A and reveal its portal reversibly', async ({page})=>{
   await page.setViewportSize({width:1440,height:900});await page.goto('/');
   const c=page.locator('.typography-canvas');
-  await expect(c).toHaveAttribute('data-anchor-letters','M,A');
+  await expect(c).toHaveAttribute('data-anchor-letters','M,A,C,S,D,U,C,G,H');
   const geometry=()=>c.evaluate(c=>({start:+c.dataset.anchorStart,end:+c.dataset.anchorEnd}));
   const {start,end}=await geometry();expect(end).toBeGreaterThan(start+500);
   const jump=async t=>{await page.evaluate(y=>scrollTo(0,y),start+(end-start)*t);await expect.poll(async()=>+(await c.getAttribute('data-anchor-progress'))).toBeCloseTo(t,2);};

@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+const englishTitles = {'city-life-is-fun':'City Life Is Fun','chroma-residences':'Chroma Residences','horse-motion-study':'Horse Motion Study'};
+const displayTitle = p => englishTitles[p.slug] || p.title;
 import projects from '../content/projects-draft.json' with { type: 'json' };
 const order = ['the-making-of-pets','anger-market','chroma-residences','stubborn-horse','dragon-dance','the-uncertain-oracle','city-life-is-fun','good-boy','horse-motion-study'];
 
@@ -34,10 +36,10 @@ test('all nine images go straight to the correct detail and survive refresh', as
     await expect(page.locator('#project-detail')).toBeVisible();
     await expect(page.locator('dialog')).toHaveCount(0);
     const p = projects.find(p => p.slug === slug);
-    await expect(page.locator('#detail-title')).toHaveText(p.title);
+    await expect(page.locator('#detail-title')).toHaveText(displayTitle(p));
     await expect(page.locator('.detail-intro')).toContainText(p.detailZh);
     await page.reload();
-    await expect(page.locator('#detail-title')).toHaveText(p.title);
+    await expect(page.locator('#detail-title')).toHaveText(displayTitle(p));
   }
   expect(errors).toEqual([]);
 });
