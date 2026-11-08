@@ -17,7 +17,7 @@ the separate Horse Motion Study. The archived island remains at legacy.html.
 ## Validation and evidence
 
 - `npm run build`: passed.
-- `npm test`: all 31 browser tests passed locally, including all nine forward and
+- `npm test`: all 32 browser tests passed locally, including all nine forward and
   reverse anchors at 1440×900 and 390×844, route/refresh/back, idle suspension,
   reduced motion and all six native MP4 videos playing with advancing time.
 - Six local clips are H.264/yuv420p (horse 16:9, four city squares, city poster 3:4).
@@ -47,3 +47,13 @@ The existing Pages build/deploy gates remain unchanged. A post-deployment
 `Verify live HTTPS site` job now runs on main and uploads live screenshots and
 `report.json` as `live-site-verification`. That report records network/platform
 restrictions rather than silently treating a provider fixture as a working video.
+
+
+### Post-deployment diagnostic correction
+
+The first deployment succeeded at commit 7fb4714. Its additional provider probe
+exposed an unbounded `HTMLMediaElement.play()` promise when a provider mounts a
+video without a usable source. The probe now pauses/reports that case after a
+bounded wait; a regression exercises the exact source-less video case. This
+changes only diagnostic behavior, not production playback or project content.
+External HTTP probes also respect the inherited session proxy where configured.
